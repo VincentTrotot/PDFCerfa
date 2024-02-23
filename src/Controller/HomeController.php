@@ -2,88 +2,78 @@
 
 namespace App\Controller;
 
+use App\Cerfa\Adresse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Fpdf\Fpdf;
-use setasign\Fpdi\Fpdi;
+use App\Cerfa\Cerfa12100_03;
+use App\Cerfa\Cerfa12101_03;
+use App\Cerfa\Personne;
+use App\Cerfa\Usager;
+use DateTime;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        $pdf = new Fpdi();
 
-        $pagecount = $pdf->setSourceFile('files/12100_03.pdf');
-        $p1 = $pdf->importPage(1);
-        $p2 = $pdf->importPage(2);
+        // Exemple de data
+        $usager = new Usager();
+        $usager->setSexe('f');
+        $usager->setNom('Dupond');
+        $usager->setNomDUsage('Dupont');
+        $usager->setOrigineNomDUsage('epouse');
+        $usager->setMotAvantNomDUsage('époux(se)');
 
-        $pdf->AddPage();
-        $pdf->useTemplate($p1);
+        $usager->setPrenoms('Marie-Christine');
+        $usager->setTaille(167);
+        $usager->setDateNaissance((new DateTime())->setDate((int)'1980', (int)'11', (int)'18'));
+        $usager->setVilleNaissance('Marseille');
+        $usager->setDepartementNaissance(13);
+        $usager->setPaysNaissance('France');
 
-        // CNI
-        $pdf->SetFont('Arial', 'B', 16);
-        $pdf->setXY(9.5, 15);
-        $pdf->Cell(100, 10, 'X');
+        $adresse1 = new Adresse();
+        $adresse1->setLigne1('48 rue des accacias');
+        $adresse1->setLigne2('Résidence croissant');
+        $adresse1->setCodePostal(13140);
+        $adresse1->setVille('Miramas');
+        $usager->addAdresse($adresse1);
 
-        // HOMME
-        $pdf->SetFont('Arial', 'B', 8);
-        $pdf->setXY(196, 35);
-        $pdf->Cell(100, 10, 'X');
+        $usager->setTelephone('9901020304');
+        $usager->setCouleurYeux('Violets');
 
-        // NOM
-        // $pdf->SetFont('Arial', '', 10);
-        // $pdf->setXY(19.5, 41.5);
-        // $pdf->Cell(100, 10, 'T   R   O   T   O   T');
-        $this->writeInBoxes($pdf, 'TROTOT', 19.5, 44);
+        $parent1 = new Personne();
+        $parent1->setSexe('F');
+        $parent1->setNom('Dulac');
+        $parent1->setPrenoms('Mariane');
+        $parent1->setDateNaissance((new DateTime())->setDate((int)'1956', (int)'03', (int)'01'));
+        $parent1->setVilleNaissance('Algrange');
+        $parent1->setNationalite('Française');
 
+        $parent2 = new Personne();
+        $parent2->setSexe('M');
+        $parent2->setNom('Dupond');
+        $parent2->setPrenoms('Jean Gilbert');
+        $parent2->setDateNaissance((new DateTime())->setDate((int)'1955', (int)'07', (int)'12'));
+        $parent2->setVilleNaissance('Strasbourg');
+        $parent2->setNationalite('Française');
 
+        $usager->addParent($parent1);
+        $usager->addParent($parent2);
 
+        $pdf = new Cerfa12100_03($usager);
+        // $pdf = new Cerfa12101_03($usager);
+        $pdf->setPasseport();
+        $pdf->setRaisonNationalite(1);
 
-
-
-        $pdf->AddPage();
-        $pdf->useTemplate($p2);
+        $pdf->addSecondPage();
 
 
         return new Response(
             $pdf->Output('', 'cerfa.pdf', true),
             Response::HTTP_OK,
-            ['Content-Type' => 'application/pdf']
+            ['Content-Type' => 'application/pdf', 'charset' => 'utf-8']
         );
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'pdf' => $pdf->Output('', 'cerfa.pdf', true),
-        ]);
-    }
-
-    private function writeInBoxes(Fpdi $pdf, string $text, $x, $y)
-    {
-        $pdf->SetFont('Arial', '', 10);
-        $pdf->setXY($x, $y);
-        $chars = str_split($text);
-        foreach ($chars as $index => $l) {
-            $pdf->Cell(4, 5, $l);
-            $pdf->SetX($pdf->GetX() + .9);
-            # code...
-        }
-    }
-}
-
-class cerfa12100_03 extends Fpdi
-{
-    // private $pdf;
-    private $p1;
-    private $p2;
-
-    public function __construct()
-    {
-        $this->setSourceFile('files/12100_03.pdf');
-        $this->p1 = $this->importPage(1);
-        $this->p2 = $this->importPage(2);
-
-        $this->AddPage();
-        $this->useTemplate($this->p1);
     }
 }
