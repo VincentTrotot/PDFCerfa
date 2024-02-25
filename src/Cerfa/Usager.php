@@ -2,8 +2,6 @@
 
 namespace App\Cerfa;
 
-use App\Cerfa\parents;
-
 class Usager extends Personne
 {
 

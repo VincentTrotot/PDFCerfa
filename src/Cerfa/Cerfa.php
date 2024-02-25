@@ -7,7 +7,7 @@ use setasign\Fpdi\Fpdi;
 
 class Cerfa
 {
-    protected $pdf;
+    protected Fpdi $pdf;
     protected $p1;
     protected $p2;
     protected $usager;
@@ -107,5 +107,25 @@ class Cerfa
         $this->writeInBoxes($jour, 46.5, 125, 2, 1, false, -0.1);
         $this->writeInBoxes($mois, 56.9, 125, 2, 1, false, -0.1);
         $this->writeInBoxes($annee, 66.8, 125, 4, 1, false, -0.1);
+    }
+
+    /**
+     * Get the value of pdf
+     */
+    public function getPdf()
+    {
+        return $this->pdf;
+    }
+
+    /**
+     * Set the value of pdf
+     *
+     * @return  self
+     */
+    public function setPdf($pdf)
+    {
+        $this->pdf = $pdf;
+
+        return $this;
     }
 }
