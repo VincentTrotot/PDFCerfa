@@ -205,6 +205,13 @@ class Usager extends Personne
         return ($index - 1 <= count($this->parents)) ? $this->parents[$index - 1] : new Personne();
     }
 
+    public function setParents($parents)
+    {
+        $this->parents = $parents;
+
+        return $this;
+    }
+
     /**
      * Get the value of motAvantNomDUsage
      */
@@ -241,6 +248,13 @@ class Usager extends Personne
     public function addAdresse($adresse)
     {
         array_push($this->adresses, $adresse);
+
+        return $this;
+    }
+
+    public function setAdresses(array $adresses)
+    {
+        $this->adresses = $adresses;
 
         return $this;
     }

@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -54,9 +55,13 @@ class UsagerType extends AbstractType
             ->add('taille', IntegerType::class)
             ->add('departementNaissance', TextType::class)
             ->add('paysNaissance', TextType::class)
-            ->add('adresse', AdresseType::class, [
-                'mapped' => false,
-                'data_class' => Adresse::class,
+            ->add('adresses', CollectionType::class, [
+                'entry_type' => AdresseType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'prototype' => true,
+                'prototype_name' => '__name__',
             ])
             ->add('telephone', TextType::class)
             ->add('couleurYeux', ChoiceType::class, [
@@ -76,13 +81,13 @@ class UsagerType extends AbstractType
 
                 ]
             ])
-            ->add('parent1', PersonneType::class, [
-                'mapped' => false,
-                'data_class' => Personne::class,
-            ])
-            ->add('parent2', PersonneType::class, [
-                'mapped' => false,
-                'data_class' => Personne::class,
+            ->add('parents', CollectionType::class, [
+                'entry_type' => PersonneType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'prototype' => true,
+                'prototype_name' => '__name__',
             ]);
     }
 
