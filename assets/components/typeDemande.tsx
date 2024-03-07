@@ -1,11 +1,11 @@
 import React, { HTMLAttributes, useState } from "react";
 
-type Demande = {
+export type Demande = {
     majorite: "majeure" | "mineure";
     type: "cni" | "passeport";
 };
 
-type TypeDemandeProps = {
+export type TypeDemandeProps = {
     demande: Demande;
     setType: (type: "cni" | "passeport") => void;
     setMajorite: (majorite: "mineure" | "majeure") => void;
@@ -22,35 +22,29 @@ export function TypeDemande({
                 <legend>La demande concerne une personne</legend>
 
                 <div>
-                    <input
-                        type="radio"
-                        id="type_demande_majeure"
-                        name="majeure"
-                        value="majeure"
-                        checked={demande.majorite === "majeure"}
-                        onChange={() => setMajorite("majeure")}
-                    />
-                    <label
-                        htmlFor="majeure"
-                        onClick={() => setMajorite("majeure")}
-                    >
+                    <label>
+                        <input
+                            type="radio"
+                            id="type_demande_majeure"
+                            name="majorite"
+                            value="majeure"
+                            checked={demande.majorite === "majeure"}
+                            onChange={() => setMajorite("majeure")}
+                        />
                         Majeure
                     </label>
                 </div>
 
                 <div>
-                    <input
-                        type="radio"
-                        id="type_demande_mineure"
-                        name="mineure"
-                        value="mineure"
-                        checked={demande.majorite === "mineure"}
-                        onChange={() => setMajorite("mineure")}
-                    />
-                    <label
-                        htmlFor="mineure"
-                        onClick={() => setMajorite("mineure")}
-                    >
+                    <label>
+                        <input
+                            type="radio"
+                            id="type_demande_mineure"
+                            name="majorite"
+                            value="mineure"
+                            checked={demande.majorite === "mineure"}
+                            onChange={() => setMajorite("mineure")}
+                        />
                         Mineure
                     </label>
                 </div>
@@ -59,32 +53,29 @@ export function TypeDemande({
                 <legend>Demande de</legend>
 
                 <div>
-                    <input
-                        type="radio"
-                        id="type_demande_cni"
-                        name="cni"
-                        value="cni"
-                        checked={demande.type === "cni"}
-                        onChange={() => setType("cni")}
-                    />
-                    <label htmlFor="cni" onClick={() => setType("cni")}>
+                    <label>
+                        <input
+                            type="radio"
+                            id="type_demande_cni"
+                            name="type_demande"
+                            value="cni"
+                            checked={demande.type === "cni"}
+                            onChange={() => setType("cni")}
+                        />
                         Carte nationale d'identité
                     </label>
                 </div>
 
                 <div>
-                    <input
-                        type="radio"
-                        id="type_demande_passeport"
-                        name="passeport"
-                        value="passeport"
-                        checked={demande.type === "passeport"}
-                        onChange={() => setType("passeport")}
-                    />
-                    <label
-                        htmlFor="passeport"
-                        onClick={() => setType("passeport")}
-                    >
+                    <label>
+                        <input
+                            type="radio"
+                            id="type_demande_passeport"
+                            name="type_demande"
+                            value="passeport"
+                            checked={demande.type === "passeport"}
+                            onChange={() => setType("passeport")}
+                        />
                         Passeport
                     </label>
                 </div>

@@ -5,9 +5,10 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
-import { TypeDemande, useDemande } from "./components/typeDemande";
+import { TypeDemande, useDemande } from "./components/TypeDemande";
+import { Personne } from "./components/Personne";
 
 function CerfaForm({}) {
     const { demande, setType, setMajorite } = useDemande();
@@ -19,6 +20,8 @@ function CerfaForm({}) {
                 setType={setType}
                 setMajorite={setMajorite}
             />
+            <hr />
+            <Personne demande={demande} />
         </>
     );
 }
