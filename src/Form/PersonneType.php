@@ -19,7 +19,9 @@ class PersonneType extends AbstractType
                 'choices' => [
                     'Homme' => 'M',
                     'Femme' => 'F'
-                ]
+                ],
+                'expanded' => true,
+                'multiple' => false,
             ])
             ->add('nom', TextType::class)
             ->add('prenoms', TextType::class)
