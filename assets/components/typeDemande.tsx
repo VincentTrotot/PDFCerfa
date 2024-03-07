@@ -1,21 +1,17 @@
 import React, { HTMLAttributes, useState } from "react";
 
 export type Demande = {
-    majorite: "majeure" | "mineure";
+    isMajeur: boolean;
     type: "cni" | "passeport";
 };
 
 export type TypeDemandeProps = {
     demande: Demande;
     setType: (type: "cni" | "passeport") => void;
-    setMajorite: (majorite: "mineure" | "majeure") => void;
+    setMajeur: (isMajeur: boolean) => void;
 } & HTMLAttributes<HTMLDivElement>;
 
-export function TypeDemande({
-    demande,
-    setType,
-    setMajorite,
-}: TypeDemandeProps) {
+export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
     return (
         <>
             <fieldset>
@@ -26,10 +22,10 @@ export function TypeDemande({
                         <input
                             type="radio"
                             id="type_demande_majeure"
-                            name="majorite"
-                            value="majeure"
-                            checked={demande.majorite === "majeure"}
-                            onChange={() => setMajorite("majeure")}
+                            name="isMajeur"
+                            value={1}
+                            checked={demande.isMajeur}
+                            onChange={() => setMajeur(true)}
                         />
                         Majeure
                     </label>
@@ -40,10 +36,10 @@ export function TypeDemande({
                         <input
                             type="radio"
                             id="type_demande_mineure"
-                            name="majorite"
-                            value="mineure"
-                            checked={demande.majorite === "mineure"}
-                            onChange={() => setMajorite("mineure")}
+                            name="isMajeur"
+                            value={0}
+                            checked={!demande.isMajeur}
+                            onChange={() => setMajeur(false)}
                         />
                         Mineure
                     </label>
@@ -87,7 +83,7 @@ export function TypeDemande({
 export function useDemande(): TypeDemandeProps {
     const [demande, setDemande] = useState({
         type: "cni",
-        majorite: "majeure",
+        isMajeur: true,
     } as Demande);
 
     function setType(type: "cni" | "passeport") {
@@ -97,12 +93,12 @@ export function useDemande(): TypeDemandeProps {
         });
     }
 
-    function setMajorite(majorite: "mineure" | "majeure") {
+    function setMajeur(isMajeur: boolean) {
         setDemande({
             ...demande,
-            majorite: majorite,
+            isMajeur: isMajeur,
         });
     }
 
-    return { demande, setType, setMajorite };
+    return { demande, setType, setMajeur };
 }
