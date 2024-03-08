@@ -34,7 +34,69 @@ class Usager extends Personne
 
 
 
+    public function setFromApiData($data)
+    {
+        $usager = $data['usager'];
+        $this->setSexe(isset($usager['sexe']) ? $usager['sexe'] : '');
+        $this->setNom(isset($usager['nom']) ? $usager['nom'] : '');
+        $this->setNomDUsage(isset($usager['nomDUsage']) ? $usager['nomDUsage'] : '');
+        $this->setOrigineNomDUsage(isset($usager['origineNomDUsage']) ? $usager['origineNomDUsage'] : '');
+        $motAvantNomDUsage = '';
+        if (isset($usager['motAvantNomDUsage']) && $usager['motAvantNomDUsage'] !== 'Aucun') {
+            $motAvantNomDUsage = $usager['motAvantNomDUsage'];
+        }
+        $this->setMotAvantNomDUsage($motAvantNomDUsage);
 
+        $this->setPrenoms(isset($usager['prenoms']) ? $usager['prenoms'] : '');
+        $this->setTaille(isset($usager['taille']) ? (int)$usager['taille'] : '');
+        $this->setDateNaissance(isset($usager['dateNaissance']) ? $usager['dateNaissance'] : '');
+        $this->setVilleNaissance(isset($usager['villeNaissance']) ? $usager['villeNaissance'] : '');
+        $this->setDepartementNaissance(isset($usager['departementNaissance']) ? (int)$usager['departementNaissance'] : '');
+        $this->setPaysNaissance(isset($usager['paysNaissance']) ? $usager['paysNaissance'] : '');
+
+        $adresse1 = new Adresse();
+        $_adresse1 = $usager['adresses'][0];
+        $adresse1->setLigne1(isset($_adresse1['ligne1']) ? $_adresse1['ligne1'] : '');
+        $adresse1->setLigne2(isset($data['ager[adresses][0][ligne2']) ? $_adresse1['ligne2'] : '');
+        $adresse1->setCodePostal(isset($_adresse1['codePostal']) ? $_adresse1['codePostal'] : '');
+        $adresse1->setVille(isset($_adresse1['ville']) ? $_adresse1['ville'] : '');
+        $this->addAdresse($adresse1);
+
+        if (isset($data['adresse2']) && $data['adresse2'] == "on") {
+            $adresse2 = new Adresse();
+            $_adresse2 = $usager['adresses'][1];
+            $adresse2->setLigne1(isset($_adresse2['ligne1']) ? $_adresse2['ligne1'] : '');
+            $adresse2->setLigne2(isset($_adresse2['ligne2']) ? $_adresse2['ligne2'] : '');
+            $adresse2->setCodePostal(isset($_adresse2['codePostal']) ? $_adresse2['codePostal'] : '');
+            $adresse2->setVille(isset($_adresse2['ville']) ? $_adresse2['ville'] : '');
+            $this->addAdresse($adresse2);
+        }
+
+        $this->setTelephone(isset($usager['telephone']) ? $usager['telephone'] : '');
+        $this->setCouleurYeux(isset($usager['couleurYeux']) ? $usager['couleurYeux'] : '');
+
+
+        $parent1 = new Personne();
+        $_parent1 = $usager['parents'][0];
+        $parent1->setSexe(isset($_parent1['sexe']) ? $_parent1['sexe'] : '');
+        $parent1->setNom(isset($_parent1['nom']) ? $_parent1['nom'] : '');
+        $parent1->setPrenoms(isset($_parent1['prenoms']) ? $_parent1['prenoms'] : '');
+        $parent1->setDateNaissance(isset($_parent1['dateNaissance']) ? $_parent1['dateNaissance'] : '');
+        $parent1->setVilleNaissance(isset($_parent1['villeNaissance']) ? $_parent1['villeNaissance'] : '');
+        $parent1->setNationalite(isset($_parent1['nationalite']) ? $_parent1['nationalite'] : '');
+
+        $parent2 = new Personne();
+        $_parent2 = $usager['parents'][1];
+        $parent2->setSexe(isset($_parent2['sexe']) ? $_parent2['sexe'] : '');
+        $parent2->setNom(isset($_parent2['nom']) ? $_parent2['nom'] : '');
+        $parent2->setPrenoms(isset($_parent2['prenoms']) ? $_parent2['prenoms'] : '');
+        $parent2->setDateNaissance(isset($_parent2['dateNaissance']) ? $_parent2['dateNaissance'] : '');
+        $parent2->setVilleNaissance(isset($_parent2['villeNaissance']) ? $_parent2['villeNaissance'] : '');
+        $parent2->setNationalite(isset($_parent2['nationalite']) ? $_parent2['nationalite'] : '');
+
+        $this->addParent($parent1);
+        $this->addParent($parent2);
+    }
 
     /**
      * Get the value of nomDUsage

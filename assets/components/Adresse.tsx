@@ -12,6 +12,7 @@ export function Adresse({ count }: AdresseProps) {
                 <p>
                     <label>
                         Ligne 1 &nbsp;
+                        <br />
                         <input
                             type="text"
                             name={"usager[adresses][" + count + "][ligne1]"}
@@ -21,6 +22,7 @@ export function Adresse({ count }: AdresseProps) {
                 <p>
                     <label>
                         Ligne 2 &nbsp;
+                        <br />
                         <input
                             type="text"
                             name={"usager[adresses][" + count + "][ligne2]"}
@@ -30,6 +32,7 @@ export function Adresse({ count }: AdresseProps) {
                 <p>
                     <label>
                         Code postal&nbsp;
+                        <br />
                         <input
                             type="text"
                             name={"usager[adresses][" + count + "][codePostal]"}
@@ -39,6 +42,7 @@ export function Adresse({ count }: AdresseProps) {
                 <p>
                     <label>
                         Ville &nbsp;
+                        <br />
                         <input
                             type="text"
                             name={"usager[adresses][" + count + "][ville]"}

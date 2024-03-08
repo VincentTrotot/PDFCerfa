@@ -3,9 +3,10 @@ import { Demande } from "./TypeDemande";
 
 type PersoneProps = {
     demande: Demande;
+    setSexe: (sexe: "M" | "F") => void;
 } & HTMLAttributes<HTMLDivElement>;
 
-export function Personne({ demande }: PersoneProps) {
+export function Personne({ demande, setSexe }: PersoneProps) {
     const [nomDUsage, setNomDUsage] = useState("");
 
     const handleChange = (nomDUsage: string) => {
@@ -23,8 +24,9 @@ export function Personne({ demande }: PersoneProps) {
                             type="radio"
                             id="sexe_demandeur_homme"
                             name="usager[sexe]"
-                            value="homme"
+                            value="M"
                             defaultChecked={true}
+                            onClick={() => setSexe("M")}
                         />
                         Homme
                     </label>
@@ -36,7 +38,8 @@ export function Personne({ demande }: PersoneProps) {
                             type="radio"
                             id="sexe_demandeur_femme"
                             name="usager[sexe]"
-                            value="femme"
+                            value="F"
+                            onClick={() => setSexe("F")}
                         />
                         Femme
                     </label>
@@ -45,12 +48,14 @@ export function Personne({ demande }: PersoneProps) {
             <p>
                 <label>
                     Nom &nbsp;
+                    <br />
                     <input type="text" name="usager[nom]" />
                 </label>
             </p>
             <p>
                 <label>
                     Nom d'usage &nbsp;
+                    <br />
                     <input
                         type="text"
                         name="usager[nomDUsage]"
@@ -62,7 +67,8 @@ export function Personne({ demande }: PersoneProps) {
             {nomDUsage !== "" && (
                 <>
                     <p>
-                        Origine du nom d'usage
+                        Présisez s'il s'agit du nom de votre
+                        <br />
                         <label>
                             <input
                                 type="radio"
@@ -107,7 +113,9 @@ export function Personne({ demande }: PersoneProps) {
                     </p>
                     {demande.isMajeur && (
                         <p>
-                            Mot avant le nom d'usage
+                            Souhaitez-vous faire apparaître un mot devant le nom
+                            d'usage ?
+                            <br />
                             <label>
                                 <input
                                     type="radio"
@@ -144,49 +152,57 @@ export function Personne({ demande }: PersoneProps) {
             <p>
                 <label>
                     Prénom(s) &nbsp;
+                    <br />
                     <input type="text" name="usager[prenoms]" />
                 </label>
             </p>
             <p>
                 <label>
                     Taille &nbsp;
+                    <br />
                     <input type="number" name="usager[taille]" />
                 </label>
             </p>
             <p>
                 <label>
                     Date de naissance &nbsp;
+                    <br />
                     <input type="date" name="usager[dateNaissance]" />
                 </label>
             </p>
             <p>
                 <label>
                     Ville de naissance &nbsp;
+                    <br />
                     <input type="text" name="usager[villeNaissance]" />
                 </label>
             </p>
             <p>
                 <label>
                     Département de naissance &nbsp;
+                    <br />
                     <input type="number" name="usager[departementNaissance]" />
                 </label>
             </p>
             <p>
                 <label>
                     Pays de naissance &nbsp;
-                    <input type="text" name="usager[PaysNaissance]" />
+                    <br />
+                    <input type="text" name="usager[paysNaissance]" />
                 </label>
             </p>
             <p>
                 <label>
                     Numéro de téléphone &nbsp;
+                    <br />
                     <input type="text" name="usager[telephone]" />
                 </label>
             </p>
             {demande.type === "passeport" && (
                 <p>
-                    <label htmlFor="">
+                    <label htmlFor="personne_couleur_yeux">
                         Couleur des yeux &nbsp;
+                        <br />
                         <select
                             name="usager[couleurYeux]"
                             id="personne_couleur_yeux"

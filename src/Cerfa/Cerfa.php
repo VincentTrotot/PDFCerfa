@@ -101,12 +101,14 @@ class Cerfa
 
         // Date de naissance 
         $date = $this->usager->getDateNaissance();
-        $jour = $date->format('d');
-        $mois = $date->format('m');
-        $annee = $date->format('Y');
-        $this->writeInBoxes($jour, 46.5, 125, 2, 1, false, -0.1);
-        $this->writeInBoxes($mois, 56.9, 125, 2, 1, false, -0.1);
-        $this->writeInBoxes($annee, 66.8, 125, 4, 1, false, -0.1);
+        if ($date !== null) {
+            $jour = $date->format('d');
+            $mois = $date->format('m');
+            $annee = $date->format('Y');
+            $this->writeInBoxes($jour, 46.5, 125, 2, 1, false, -0.1);
+            $this->writeInBoxes($mois, 56.9, 125, 2, 1, false, -0.1);
+            $this->writeInBoxes($annee, 66.8, 125, 4, 1, false, -0.1);
+        }
     }
 
     /**

@@ -9,7 +9,7 @@ class Personne
     protected string $sexe;
     protected string $nom;
     protected string $prenoms;
-    protected \DateTime|null $dateNaissance;
+    protected \DateTime|string|null $dateNaissance;
     protected string $villeNaissance;
     protected string $nationalite;
 
@@ -98,6 +98,13 @@ class Personne
      */
     public function setDateNaissance($dateNaissance)
     {
+        if ($dateNaissance === '') {
+            $dateNaissance = null;
+        }
+        if (is_string($dateNaissance)) {
+            $dateNaissance = new \DateTime($dateNaissance);
+        }
+
         $this->dateNaissance = $dateNaissance;
 
         return $this;

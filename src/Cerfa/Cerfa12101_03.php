@@ -141,6 +141,9 @@ class Cerfa12101_03 extends Cerfa
     {
         $taille = $this->usager->getTaille();
         if ($taille == 0) return;
+        if ($taille < 100) {
+            $taille = "0" . (string)$taille;
+        }
 
         $this->writeInBoxes($taille, 20.3, 93, 3, 1);
     }
@@ -148,7 +151,7 @@ class Cerfa12101_03 extends Cerfa
     private function writeDateNaissance()
     {
         $date = $this->usager->getDateNaissance();
-        if ($date === NULL) return;
+        if ($date === null) return;
 
         $jour = $date->format('d');
         $mois = $date->format('m');
@@ -249,13 +252,15 @@ class Cerfa12101_03 extends Cerfa
 
             // Date de naissance
             $date = $parent->getDateNaissance();
-            $jour = $date->format('d');
-            $mois = $date->format('m');
-            $annee = $date->format('Y');
-            $y = $index == 0 ? 196.4 : 231.7;
-            $this->writeInBoxes($jour, 25, $y, 2, 1);
-            $this->writeInBoxes($mois, 39.4, $y, 2, 1);
-            $this->writeInBoxes($annee, 54.1, $y, 4, 1);
+            if ($date !== null) {
+                $jour = $date->format('d');
+                $mois = $date->format('m');
+                $annee = $date->format('Y');
+                $y = $index == 0 ? 196.4 : 231.7;
+                $this->writeInBoxes($jour, 25, $y, 2, 1);
+                $this->writeInBoxes($mois, 39.4, $y, 2, 1);
+                $this->writeInBoxes($annee, 54.1, $y, 4, 1);
+            }
 
             // Lieu de naissance
             $lieu = $parent->getVilleNaissance();

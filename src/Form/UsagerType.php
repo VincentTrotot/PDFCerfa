@@ -50,7 +50,7 @@ class UsagerType extends AbstractType
             ->add('motAvantNomDUsage', ChoiceType::class, [
                 'choices' => [
                     'aucun' => '',
-                    'époux(se)' => 'époux(se)',
+                    'époux(se)' => 'epoux(se)',
                     'veuf(ve)' => 'veuf(ve)'
                 ],
                 'expanded' => true,

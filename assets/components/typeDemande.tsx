@@ -15,37 +15,6 @@ export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
     return (
         <>
             <fieldset>
-                <legend>La demande concerne une personne</legend>
-
-                <div>
-                    <label>
-                        <input
-                            type="radio"
-                            id="type_demande_majeure"
-                            name="isMajeur"
-                            value={1}
-                            checked={demande.isMajeur}
-                            onChange={() => setMajeur(true)}
-                        />
-                        Majeure
-                    </label>
-                </div>
-
-                <div>
-                    <label>
-                        <input
-                            type="radio"
-                            id="type_demande_mineure"
-                            name="isMajeur"
-                            value={0}
-                            checked={!demande.isMajeur}
-                            onChange={() => setMajeur(false)}
-                        />
-                        Mineure
-                    </label>
-                </div>
-            </fieldset>
-            <fieldset>
                 <legend>Demande de</legend>
 
                 <div>
@@ -73,6 +42,37 @@ export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
                             onChange={() => setType("passeport")}
                         />
                         Passeport
+                    </label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>La demande concerne une personne</legend>
+
+                <div>
+                    <label>
+                        <input
+                            type="radio"
+                            id="type_demande_majeure"
+                            name="isMajeur"
+                            value={1}
+                            checked={demande.isMajeur}
+                            onChange={() => setMajeur(true)}
+                        />
+                        Majeure (ou mineure émancipée)
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <input
+                            type="radio"
+                            id="type_demande_mineure"
+                            name="isMajeur"
+                            value={0}
+                            checked={!demande.isMajeur}
+                            onChange={() => setMajeur(false)}
+                        />
+                        Mineure
                     </label>
                 </div>
             </fieldset>

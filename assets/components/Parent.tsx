@@ -18,7 +18,7 @@ export function Parent({ count }: ParentProps) {
                                 type="radio"
                                 id={"sexe_parent_" + count + "_homme"}
                                 name={"usager[parents][" + count + "][sexe]"}
-                                value="homme"
+                                value="M"
                                 defaultChecked={true}
                             />
                             Homme
@@ -31,7 +31,7 @@ export function Parent({ count }: ParentProps) {
                                 type="radio"
                                 id={"sexe_parent_" + count + "_homme"}
                                 name={"usager[parents][" + count + "][sexe]"}
-                                value="femme"
+                                value="F"
                             />
                             Femme
                         </label>
@@ -40,6 +40,7 @@ export function Parent({ count }: ParentProps) {
                 <p>
                     <label>
                         Nom &nbsp;
+                        <br />
                         <input
                             type="text"
                             name={"usager[parents][" + count + "][nom]"}
@@ -49,6 +50,7 @@ export function Parent({ count }: ParentProps) {
                 <p>
                     <label>
                         Prénoms &nbsp;
+                        <br />
                         <input
                             type="text"
                             name={"usager[parents][" + count + "][prenoms]"}
@@ -58,6 +60,7 @@ export function Parent({ count }: ParentProps) {
                 <p>
                     <label>
                         Date de naissance&nbsp;
+                        <br />
                         <input
                             type="date"
                             name={
@@ -69,6 +72,7 @@ export function Parent({ count }: ParentProps) {
                 <p>
                     <label>
                         Ville de naissance &nbsp;
+                        <br />
                         <input
                             type="text"
                             name={
@@ -80,6 +84,7 @@ export function Parent({ count }: ParentProps) {
                 <p>
                     <label>
                         Nationalité &nbsp;
+                        <br />
                         <input
                             type="text"
                             name={"usager[parents][" + count + "][nationalite]"}
