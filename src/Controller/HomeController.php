@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(Request $request, SessionInterface $session): Response
+    public function index(): Response
     {
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
@@ -23,7 +23,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/api/cerfa', name: 'api_cerfa')]
-    public function apiCerfa(Request $request, SessionInterface $session): Response
+    public function apiCerfa(Request $request): Response
     {
         $data = json_decode($request->getContent(), true);
 

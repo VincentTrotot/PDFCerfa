@@ -17,9 +17,10 @@ export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
             <fieldset>
                 <legend>Demande de</legend>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="type_demande_cni"
                             name="type_demande"
@@ -31,9 +32,10 @@ export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
                     </label>
                 </div>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="type_demande_passeport"
                             name="type_demande"
@@ -48,9 +50,10 @@ export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
             <fieldset>
                 <legend>La demande concerne une personne</legend>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="type_demande_majeure"
                             name="isMajeur"
@@ -62,9 +65,10 @@ export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
                     </label>
                 </div>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="type_demande_mineure"
                             name="isMajeur"

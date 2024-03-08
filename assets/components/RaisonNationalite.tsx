@@ -18,9 +18,10 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                     parce que
                 </legend>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="raison_nationalite_1"
                             name="raisonNationalite"
@@ -42,9 +43,10 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                     </label>
                 </div>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="raison_nationalite_2"
                             name="raisonNationalite"
@@ -67,9 +69,10 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                     </label>
                 </div>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="raison_nationalite_3"
                             name="raisonNationalite"
@@ -90,9 +93,10 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                     </label>
                 </div>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="raison_nationalite_4"
                             name="raisonNationalite"
@@ -113,9 +117,10 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                     </label>
                 </div>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="raison_nationalite_5"
                             name="raisonNationalite"
@@ -137,9 +142,10 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                     </label>
                 </div>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="raison_nationalite_6"
                             name="raisonNationalite"
@@ -157,9 +163,10 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                     </label>
                 </div>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="raison_nationalite_7"
                             name="raisonNationalite"
@@ -176,9 +183,10 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                 </div>
                 {isMajeur && (
                     <>
-                        <div>
-                            <label>
+                        <div className="form-check">
+                            <label className="form-check-label">
                                 <input
+                                    className="form-check-input"
                                     type="radio"
                                     id="raison_nationalite_8"
                                     name="raisonNationalite"
@@ -190,9 +198,10 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                             </label>
                         </div>
 
-                        <div>
-                            <label>
+                        <div className="form-check">
+                            <label className="form-check-label">
                                 <input
+                                    className="form-check-input"
                                     type="radio"
                                     id="raison_nationalite_9"
                                     name="raisonNationalite"
@@ -203,9 +212,10 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                             </label>
                         </div>
 
-                        <div>
-                            <label>
+                        <div className="form-check">
+                            <label className="form-check-label">
                                 <input
+                                    className="form-check-input"
                                     type="radio"
                                     id="raison_nationalite_10"
                                     name="raisonNationalite"
@@ -215,9 +225,10 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                                 déclaration (autrement que par mariage)
                             </label>
                         </div>
-                        <div>
-                            <label>
+                        <div className="form-check">
+                            <label className="form-check-label">
                                 <input
+                                    className="form-check-input"
                                     type="radio"
                                     id="raison_nationalite_11"
                                     name="raisonNationalite"

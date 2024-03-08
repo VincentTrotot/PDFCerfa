@@ -10,44 +10,60 @@ export function Adresse({ count }: AdresseProps) {
             <fieldset>
                 <legend>Adresse {+count + 1}</legend>
                 <p>
-                    <label>
+                    <label
+                        className="form-label"
+                        htmlFor={"usager[adresses][" + count + "][ligne1]"}
+                    >
                         Ligne 1 &nbsp;
-                        <br />
-                        <input
-                            type="text"
-                            name={"usager[adresses][" + count + "][ligne1]"}
-                        />
                     </label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        id={"usager[adresses][" + count + "][ligne1]"}
+                        name={"usager[adresses][" + count + "][ligne1]"}
+                    />
                 </p>
                 <p>
-                    <label>
+                    <label
+                        className="form-label"
+                        htmlFor={"usager[adresses][" + count + "][ligne2]"}
+                    >
                         Ligne 2 &nbsp;
-                        <br />
-                        <input
-                            type="text"
-                            name={"usager[adresses][" + count + "][ligne2]"}
-                        />
                     </label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        id={"usager[adresses][" + count + "][ligne2]"}
+                        name={"usager[adresses][" + count + "][ligne2]"}
+                    />
                 </p>
                 <p>
-                    <label>
+                    <label
+                        className="form-label"
+                        htmlFor={"usager[adresses][" + count + "][codePostal]"}
+                    >
                         Code postal&nbsp;
-                        <br />
-                        <input
-                            type="text"
-                            name={"usager[adresses][" + count + "][codePostal]"}
-                        />
                     </label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        id={"usager[adresses][" + count + "][codePostal]"}
+                        name={"usager[adresses][" + count + "][codePostal]"}
+                    />
                 </p>
                 <p>
-                    <label>
+                    <label
+                        className="form-label"
+                        htmlFor={"usager[adresses][" + count + "][ville]"}
+                    >
                         Ville &nbsp;
-                        <br />
-                        <input
-                            type="text"
-                            name={"usager[adresses][" + count + "][ville]"}
-                        />
                     </label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        id={"usager[adresses][" + count + "][ville]"}
+                        name={"usager[adresses][" + count + "][ville]"}
+                    />
                 </p>
             </fieldset>
         </>

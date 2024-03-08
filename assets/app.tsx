@@ -46,7 +46,7 @@ function CerfaForm({}) {
         }
     };
     return (
-        <>
+        <div className="container">
             <h1>
                 Demande de{" "}
                 {demande.type == "cni"
@@ -64,40 +64,62 @@ function CerfaForm({}) {
                 <hr />
                 <Adresse count="0" />
                 {!demande.isMajeur && (
-                    <p>
-                        <label htmlFor="adresse2">
-                            <input
-                                type="checkbox"
-                                name="adresse2"
-                                id="adresse2"
-                                checked={adresse2}
-                                onChange={handleAdresse2}
-                            />
-                            Ajouter une adresse
-                        </label>
-                    </p>
+                    <>
+                        <hr />
+                        <div className="form-check mb-3">
+                            <label
+                                htmlFor="adresse2"
+                                className="form-check-label"
+                            >
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    name="adresse2"
+                                    id="adresse2"
+                                    checked={adresse2}
+                                    onChange={handleAdresse2}
+                                />
+                                Ajouter une adresse
+                            </label>
+                        </div>
+                    </>
                 )}
                 {!demande.isMajeur && adresse2 && <Adresse count="1" />}
                 <hr />
                 <Parent count="0" />
+                <hr />
                 <Parent count="1" />
+                <hr />
                 <RaisonNationalite sexe={sexe} isMajeur={demande.isMajeur} />
                 {demande.isMajeur && (
-                    <p>
-                        <label htmlFor="isTutelle">
-                            <input
-                                type="checkbox"
-                                name="isTutelle"
-                                id="isTutelle"
-                                checked={tutelle}
-                                onChange={handleTutelle}
-                            />
-                            Le demandeur est un majeur en tutelle
-                        </label>
-                    </p>
+                    <>
+                        <hr />
+                        <div className="mb-3 form-check">
+                            <label
+                                htmlFor="isTutelle"
+                                className="form-check-label"
+                            >
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    name="isTutelle"
+                                    id="isTutelle"
+                                    checked={tutelle}
+                                    onChange={handleTutelle}
+                                />
+                                Le demandeur est un majeur en tutelle
+                            </label>
+                        </div>
+                    </>
                 )}
                 {demande.isMajeur && tutelle && <Tutelle />}
-                <input type="submit" value="Valider" />
+                <div className="d-grid gap-2">
+                    <input
+                        type="submit"
+                        value="Valider la demande"
+                        className="btn btn-primary"
+                    />
+                </div>
             </form>
             {pdf !== "" && (
                 <>
@@ -125,7 +147,7 @@ function CerfaForm({}) {
                     </p>
                 </>
             )}
-        </>
+        </div>
     );
 }
 

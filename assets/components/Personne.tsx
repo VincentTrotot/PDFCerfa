@@ -18,9 +18,10 @@ export function Personne({ demande, setSexe }: PersoneProps) {
             <fieldset>
                 <legend>Sexe</legend>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="sexe_demandeur_homme"
                             name="usager[sexe]"
@@ -32,9 +33,10 @@ export function Personne({ demande, setSexe }: PersoneProps) {
                     </label>
                 </div>
 
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="sexe_demandeur_femme"
                             name="usager[sexe]"
@@ -45,182 +47,241 @@ export function Personne({ demande, setSexe }: PersoneProps) {
                     </label>
                 </div>
             </fieldset>
-            <p>
-                <label>
-                    Nom &nbsp;
-                    <br />
-                    <input type="text" name="usager[nom]" />
+            <div className="mb-3">
+                <label className="form-label" htmlFor="usager[nom]">
+                    Nom
                 </label>
-            </p>
-            <p>
-                <label>
-                    Nom d'usage &nbsp;
-                    <br />
-                    <input
-                        type="text"
-                        name="usager[nomDUsage]"
-                        value={nomDUsage}
-                        onChange={(e) => handleChange(e.target.value)}
-                    />
+                <input
+                    className="form-control"
+                    type="text"
+                    id="usager[nom]"
+                    name="usager[nom]"
+                />
+            </div>
+            <div className="mb-3">
+                <label className="form-label" htmlFor="usager[nomDUsage]">
+                    Nom d'usage
                 </label>
-            </p>
+                <input
+                    className="form-control"
+                    type="text"
+                    id="usager[nomDUsage]"
+                    name="usager[nomDUsage]"
+                    value={nomDUsage}
+                    onChange={(e) => handleChange(e.target.value)}
+                />
+            </div>
             {nomDUsage !== "" && (
                 <>
-                    <p>
+                    <div className="form-group mb-3">
                         Présisez s'il s'agit du nom de votre
                         <br />
-                        <label>
-                            <input
-                                type="radio"
-                                id="origine_nom_usage_pere"
-                                name="usager[origineNomDUsage]"
-                                value="pere"
-                                defaultChecked={true}
-                            />
-                            Père
-                        </label>
-                        <label>
-                            <input
-                                type="radio"
-                                id="origine_nom_usage_mere"
-                                name="usager[origineNomDUsage]"
-                                value="mere"
-                            />
-                            Mère
-                        </label>
+                        <div className="form-check">
+                            <label className="form-ckeck-label">
+                                <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    id="origine_nom_usage_pere"
+                                    name="usager[origineNomDUsage]"
+                                    value="pere"
+                                    defaultChecked={true}
+                                />
+                                Père
+                            </label>
+                        </div>
+                        <div className="form-check">
+                            <label className="form-check-label">
+                                <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    id="origine_nom_usage_mere"
+                                    name="usager[origineNomDUsage]"
+                                    value="mere"
+                                />
+                                Mère
+                            </label>
+                        </div>
                         {demande.isMajeur && (
                             <>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        id="origine_nom_usage_epoux"
-                                        name="usager[origineNomDUsage]"
-                                        value="epoux"
-                                    />
-                                    Époux
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        id="origine_nom_usage_epouse"
-                                        name="usager[origineNomDUsage]"
-                                        value="epouse"
-                                    />
-                                    Épouse
-                                </label>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input
+                                            className="form-check-input"
+                                            type="radio"
+                                            id="origine_nom_usage_epoux"
+                                            name="usager[origineNomDUsage]"
+                                            value="epoux"
+                                        />
+                                        Époux
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input
+                                            className="form-check-input"
+                                            type="radio"
+                                            id="origine_nom_usage_epouse"
+                                            name="usager[origineNomDUsage]"
+                                            value="epouse"
+                                        />
+                                        Épouse
+                                    </label>
+                                </div>
                             </>
                         )}
-                    </p>
+                    </div>
                     {demande.isMajeur && (
                         <p>
                             Souhaitez-vous faire apparaître un mot devant le nom
                             d'usage ?
-                            <br />
-                            <label>
-                                <input
-                                    type="radio"
-                                    id="mot_avant_nom_usage_aucun"
-                                    name="usager[motAvantNomDUsage]"
-                                    value="Aucun"
-                                    defaultChecked={true}
-                                />
-                                aucun
-                            </label>
-                            <label>
-                                <input
-                                    type="radio"
-                                    id="mot_avant_nom_usage_epoux"
-                                    name="usager[motAvantNomDUsage]"
-                                    value="epoux(se)"
-                                />
-                                époux(se)
-                            </label>
-                            <label>
-                                <input
-                                    type="radio"
-                                    id="mot_avant_nom_usage_veuf"
-                                    name="usager[motAvantNomDUsage]"
-                                    value="veuf(ve)"
-                                />
-                                veuf(ve)
-                            </label>
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input
+                                        className="form-check-input"
+                                        type="radio"
+                                        id="mot_avant_nom_usage_aucun"
+                                        name="usager[motAvantNomDUsage]"
+                                        value="Aucun"
+                                        defaultChecked={true}
+                                    />
+                                    non
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input
+                                        className="form-check-input"
+                                        type="radio"
+                                        id="mot_avant_nom_usage_epoux"
+                                        name="usager[motAvantNomDUsage]"
+                                        value="epoux(se)"
+                                    />
+                                    époux(se)
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input
+                                        className="form-check-input"
+                                        type="radio"
+                                        id="mot_avant_nom_usage_veuf"
+                                        name="usager[motAvantNomDUsage]"
+                                        value="veuf(ve)"
+                                    />
+                                    veuf(ve)
+                                </label>
+                            </div>
                         </p>
                     )}
                 </>
             )}
 
             <p>
-                <label>
-                    Prénom(s) &nbsp;
-                    <br />
-                    <input type="text" name="usager[prenoms]" />
+                <label className="form-label" htmlFor="usager[prenoms]">
+                    Prénom(s)
                 </label>
+                <input
+                    className="form-control"
+                    type="text"
+                    id="usager[prenoms]"
+                    name="usager[prenoms]"
+                />
             </p>
             <p>
-                <label>
-                    Taille &nbsp;
-                    <br />
-                    <input type="number" name="usager[taille]" />
+                <label className="form-label" htmlFor="usager[taille]">
+                    Taille
                 </label>
+                <input
+                    className="form-control"
+                    type="number"
+                    id="usager[taille]"
+                    name="usager[taille]"
+                />
             </p>
             <p>
-                <label>
-                    Date de naissance &nbsp;
-                    <br />
-                    <input type="date" name="usager[dateNaissance]" />
+                <label className="form-label" htmlFor="usager[dateNaissance]">
+                    Date de naissance
                 </label>
+                <input
+                    className="form-control"
+                    type="date"
+                    id="usager[dateNaissance]"
+                    name="usager[dateNaissance]"
+                />
             </p>
             <p>
-                <label>
-                    Ville de naissance &nbsp;
-                    <br />
-                    <input type="text" name="usager[villeNaissance]" />
+                <label className="form-label" htmlFor="usager[villeNaissance]">
+                    Ville de naissance
                 </label>
+                <input
+                    className="form-control"
+                    type="text"
+                    id="usager[villeNaissance]"
+                    name="usager[villeNaissance]"
+                />
             </p>
             <p>
-                <label>
-                    Département de naissance &nbsp;
-                    <br />
-                    <input type="number" name="usager[departementNaissance]" />
+                <label
+                    className="form-label"
+                    htmlFor="usager[departementNaissance]"
+                >
+                    Département de naissance
                 </label>
+                <input
+                    className="form-control"
+                    type="number"
+                    id="usager[departementNaissance]"
+                    name="usager[departementNaissance]"
+                />
             </p>
             <p>
-                <label>
-                    Pays de naissance &nbsp;
-                    <br />
-                    <input type="text" name="usager[paysNaissance]" />
+                <label className="form-label" htmlFor="usager[paysNaissance]">
+                    Pays de naissance
                 </label>
+                <input
+                    className="form-control"
+                    type="text"
+                    id="usager[paysNaissance]"
+                    name="usager[paysNaissance]"
+                />
             </p>
             <p>
-                <label>
-                    Numéro de téléphone &nbsp;
-                    <br />
-                    <input type="text" name="usager[telephone]" />
+                <label className="form-label" htmlFor="usager[telephone]">
+                    Numéro de téléphone
                 </label>
+                <input
+                    className="form-control"
+                    type="text"
+                    id="usager[telephone]"
+                    name="usager[telephone]"
+                />
             </p>
             {demande.type === "passeport" && (
                 <p>
-                    <label htmlFor="personne_couleur_yeux">
-                        Couleur des yeux &nbsp;
-                        <br />
-                        <select
-                            name="usager[couleurYeux]"
-                            id="personne_couleur_yeux"
-                        >
-                            <option value="Marrons">Marrons</option>
-                            <option value="Verts">Verts</option>
-                            <option value="Bleus">Bleus</option>
-                            <option value="Albinos">Albinos</option>
-                            <option value="Bleus-Gris">Bleus-Gris</option>
-                            <option value="Bleus-Verts">Bleus-Verts</option>
-                            <option value="Gris">Gris</option>
-                            <option value="Gris-verts">Gris-verts</option>
-                            <option value="Marron-verts">Marron-verts</option>
-                            <option value="Noirs">Noirs</option>
-                            <option value="Noisettes">Noisettes</option>
-                            <option value="Vairons">Vairons</option>
-                        </select>
+                    <label
+                        htmlFor="personne_couleur_yeux"
+                        className="form-label"
+                    >
+                        Couleur des yeux
                     </label>
+                    <select
+                        className="form-select"
+                        name="usager[couleurYeux]"
+                        id="personne_couleur_yeux"
+                    >
+                        <option value="Marrons">Marrons</option>
+                        <option value="Verts">Verts</option>
+                        <option value="Bleus">Bleus</option>
+                        <option value="Albinos">Albinos</option>
+                        <option value="Bleus-Gris">Bleus-Gris</option>
+                        <option value="Bleus-Verts">Bleus-Verts</option>
+                        <option value="Gris">Gris</option>
+                        <option value="Gris-verts">Gris-verts</option>
+                        <option value="Marron-verts">Marron-verts</option>
+                        <option value="Noirs">Noirs</option>
+                        <option value="Noisettes">Noisettes</option>
+                        <option value="Vairons">Vairons</option>
+                    </select>
                 </p>
             )}
         </>

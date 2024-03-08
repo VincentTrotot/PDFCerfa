@@ -7,9 +7,10 @@ export function Tutelle() {
                 <legend>
                     Si le demandeur est un majeur en tutelle, le tuteur
                 </legend>
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="tutelle_informe"
                             name="tutelle"
@@ -18,9 +19,10 @@ export function Tutelle() {
                         est informé de la demande et a joint une attestation
                     </label>
                 </div>
-                <div>
-                    <label>
+                <div className="form-check">
+                    <label className="form-check-label">
                         <input
+                            className="form-check-input"
                             type="radio"
                             id="tutelle_signataire"
                             name="tutelle"

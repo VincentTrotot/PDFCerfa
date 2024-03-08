@@ -12,9 +12,13 @@ export function Parent({ count }: ParentProps) {
                 <fieldset>
                     <legend>Sexe</legend>
 
-                    <div>
-                        <label>
+                    <div className="form-check">
+                        <label
+                            className="form-check-label"
+                            htmlFor={"sexe_parent_" + count + "_homme"}
+                        >
                             <input
+                                className="form-check-input"
                                 type="radio"
                                 id={"sexe_parent_" + count + "_homme"}
                                 name={"usager[parents][" + count + "][sexe]"}
@@ -25,11 +29,15 @@ export function Parent({ count }: ParentProps) {
                         </label>
                     </div>
 
-                    <div>
-                        <label>
+                    <div className="form-check">
+                        <label
+                            className="form-check-label"
+                            htmlFor={"sexe_parent_" + count + "_femme"}
+                        >
                             <input
+                                className="form-check-input"
                                 type="radio"
-                                id={"sexe_parent_" + count + "_homme"}
+                                id={"sexe_parent_" + count + "_femme"}
                                 name={"usager[parents][" + count + "][sexe]"}
                                 value="F"
                             />
@@ -37,60 +45,80 @@ export function Parent({ count }: ParentProps) {
                         </label>
                     </div>
                 </fieldset>
-                <p>
-                    <label>
+                <div className="mb-3">
+                    <label
+                        className="form-label"
+                        htmlFor={"usager[parents][" + count + "][nom]"}
+                    >
                         Nom &nbsp;
-                        <br />
-                        <input
-                            type="text"
-                            name={"usager[parents][" + count + "][nom]"}
-                        />
                     </label>
-                </p>
-                <p>
-                    <label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        id={"usager[parents][" + count + "][nom]"}
+                        name={"usager[parents][" + count + "][nom]"}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label
+                        className="form-label"
+                        htmlFor={"usager[parents][" + count + "][prenoms]"}
+                    >
                         Prénoms &nbsp;
-                        <br />
-                        <input
-                            type="text"
-                            name={"usager[parents][" + count + "][prenoms]"}
-                        />
                     </label>
-                </p>
-                <p>
-                    <label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        id={"usager[parents][" + count + "][prenoms]"}
+                        name={"usager[parents][" + count + "][prenoms]"}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label
+                        className="form-label"
+                        htmlFor={
+                            "usager[parents][" + count + "][dateNaissance]"
+                        }
+                    >
                         Date de naissance&nbsp;
-                        <br />
-                        <input
-                            type="date"
-                            name={
-                                "usager[parents][" + count + "][dateNaissance]"
-                            }
-                        />
                     </label>
-                </p>
-                <p>
-                    <label>
+                    <input
+                        className="form-control"
+                        type="date"
+                        name={"usager[parents][" + count + "][dateNaissance]"}
+                        id={"usager[parents][" + count + "][dateNaissance]"}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label
+                        className="form-label"
+                        htmlFor={
+                            "usager[parents][" + count + "][villeNaissance]"
+                        }
+                    >
                         Ville de naissance &nbsp;
-                        <br />
-                        <input
-                            type="text"
-                            name={
-                                "usager[parents][" + count + "][villeNaissance]"
-                            }
-                        />
                     </label>
-                </p>
-                <p>
-                    <label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        id={"usager[parents][" + count + "][villeNaissance]"}
+                        name={"usager[parents][" + count + "][villeNaissance]"}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label
+                        className="form-label"
+                        htmlFor={"usager[parents][" + count + "][nationalite]"}
+                    >
                         Nationalité &nbsp;
-                        <br />
-                        <input
-                            type="text"
-                            name={"usager[parents][" + count + "][nationalite]"}
-                        />
                     </label>
-                </p>
+                    <input
+                        className="form-control"
+                        type="text"
+                        id={"usager[parents][" + count + "][nationalite]"}
+                        name={"usager[parents][" + count + "][nationalite]"}
+                    />
+                </div>
             </fieldset>
         </>
     );
