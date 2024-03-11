@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { TypeDemande, useDemande } from "./components/TypeDemande";
 import { Personne } from "./components/Personne";
@@ -16,6 +16,14 @@ function CerfaForm({}) {
     const [adresse2, setAdresse2] = useState(false);
     const [tutelle, setTutelle] = useState(false);
     const [pdf, setPdf] = useState("");
+
+    const title = `Demande de ${
+        demande.type == "cni" ? "carte nationale d'identité" : "passeport"
+    }`;
+
+    useEffect(() => {
+        document.title = title;
+    }, [demande.type]);
 
     const handleTutelle = () => {
         setTutelle(!tutelle);
@@ -47,12 +55,7 @@ function CerfaForm({}) {
     };
     return (
         <div className="container">
-            <h1>
-                Demande de{" "}
-                {demande.type == "cni"
-                    ? "carte nationale d'identité"
-                    : "passeport"}
-            </h1>
+            <h1>{title}</h1>
             <form onSubmit={handleSubmit}>
                 <TypeDemande
                     demande={demande}
