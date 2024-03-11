@@ -1,5 +1,6 @@
 import React, { HTMLAttributes, useState } from "react";
 import { Demande } from "./TypeDemande";
+import { departements } from "../inc/departements";
 
 type PersoneProps = {
     demande: Demande;
@@ -220,7 +221,7 @@ export function Personne({ demande, setSexe }: PersoneProps) {
                     name="usager[villeNaissance]"
                 />
             </p>
-            <p>
+            <div className="form-group">
                 <label
                     className="form-label"
                     htmlFor="usager[departementNaissance]"
@@ -229,11 +230,17 @@ export function Personne({ demande, setSexe }: PersoneProps) {
                 </label>
                 <input
                     className="form-control"
-                    type="number"
+                    type="text"
                     id="usager[departementNaissance]"
                     name="usager[departementNaissance]"
+                    list="list-departement"
                 />
-            </p>
+                <datalist id="list-departement">
+                    {departements.map((d) => (
+                        <option key={d.id}>{d.texte}</option>
+                    ))}
+                </datalist>
+            </div>
             <p>
                 <label className="form-label" htmlFor="usager[paysNaissance]">
                     Pays de naissance

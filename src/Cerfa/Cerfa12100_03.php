@@ -238,7 +238,10 @@ class Cerfa12100_03 extends Cerfa
     private function writeDepartementNaissance()
     {
         $departement = (string) $this->usager->getDepartementNaissance();
-        if (strlen($departement) == 2) {
+        if (strlen($departement) == 1) {
+            $departement = "0" . $departement;
+            $this->writeInBoxes($departement, 58.7, 102.5);
+        } elseif (strlen($departement) == 2) {
             $this->writeInBoxes($departement, 58.7, 102.5);
         } elseif (strlen($departement) == 3) {
             $this->writeInBoxes($departement, 54, 102.5);
