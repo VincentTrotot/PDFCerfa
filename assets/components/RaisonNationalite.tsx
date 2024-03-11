@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useState } from "react";
+import React, { HTMLAttributes } from "react";
 
 export type RaisonNationaliteProps = {
     sexe: "M" | "F";
@@ -11,8 +11,8 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
             <fieldset>
                 <legend>
                     {isMajeur
-                        ? `Vous êtes français${sexe == "F" && "e"}`
-                        : "La personne mineure est française"}
+                        ? `Vous êtes français${sexe == "F" ? "e " : " "}`
+                        : "La personne mineure est française "}
                     parce que
                 </legend>
 
@@ -28,7 +28,7 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                         />
                         {isMajeur &&
                             `Vous êtes né${
-                                sexe == "F" && "e"
+                                sexe == "F" ? "e" : ""
                             } en France et l'un au moins de vos parents est né en France`}
                         {!isMajeur &&
                             "Elle est née en France et l'un au mois de ses parents est né en France"}
@@ -46,7 +46,7 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                         />
                         {isMajeur &&
                             `Vous êtes né${
-                                sexe == "F" && "e"
+                                sexe == "F" ? "e" : ""
                             } en France et l'un au moins de vos parents est né dans un ancien département ou territoire français`}
                         {!isMajeur &&
                             "Elle est née en France et l'un au mois de ses parents est né dans un ancien département ou territoire français"}
@@ -64,7 +64,7 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                         />
                         {isMajeur &&
                             `Vous êtes né${
-                                sexe == "F" && "e"
+                                sexe == "F" ? "e" : ""
                             } en France et l'un au moins de vos parents est français`}
                         {!isMajeur &&
                             "Elle est née en France et l'un au mois de ses parents est français"}
@@ -82,7 +82,7 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                         />
                         {isMajeur &&
                             `Vous n'êtes pas né${
-                                sexe == "F" && "e"
+                                sexe == "F" ? "e" : ""
                             } en France et l'un au moins de vos parents est français`}
                         {!isMajeur &&
                             "Elle n'est pas née en France et l'un au mois de ses parents est français"}
@@ -134,7 +134,7 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                         />
                         {isMajeur &&
                             `Vous êtes né${
-                                sexe == "F" && "e"
+                                sexe == "F" ? "e" : ""
                             } en France et vos parents ne sont pas français`}
                         {!isMajeur && "Autre motif"}
                     </label>
@@ -150,9 +150,9 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                                     name="raisonNationalite"
                                     value="8"
                                 />
-                                Vous êtes naturalisé{sexe == "F" && "e"}{" "}
+                                Vous êtes naturalisé{sexe == "F" ? "e" : ""}{" "}
                                 français
-                                {sexe == "F" && "e"}
+                                {sexe == "F" ? "e" : ""}
                             </label>
                         </div>
 
@@ -165,8 +165,8 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                                     name="raisonNationalite"
                                     value="9"
                                 />
-                                Vous avez été réintégré{sexe == "F" && "e"} dans
-                                la nationalité française
+                                Vous avez été réintégré{sexe == "F" ? "e" : ""}{" "}
+                                dans la nationalité française
                             </label>
                         </div>
 
@@ -179,7 +179,7 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                                     name="raisonNationalite"
                                     value="10"
                                 />
-                                Vous êtes français{sexe == "F" && "e"} par
+                                Vous êtes français{sexe == "F" ? "e" : ""} par
                                 déclaration (autrement que par mariage)
                             </label>
                         </div>
