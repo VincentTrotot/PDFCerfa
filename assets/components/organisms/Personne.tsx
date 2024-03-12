@@ -58,12 +58,6 @@ export function Personne({ demande, setSexe }: PersoneProps) {
             <Input id="usager[paysNaissance]" label="Pays de naissance" />
             <Input id="usager[telephone]" label="Numéro de téléphone" />
 
-            <SelectInput
-                id="personne_couleur_yeux"
-                name="usager[couleurYeux]"
-                label="Couleur des yeux"
-                options={couleursYeux}
-            />
             {demande.type === "passeport" && (
                 <SelectInput
                     id="personne_couleur_yeux"
