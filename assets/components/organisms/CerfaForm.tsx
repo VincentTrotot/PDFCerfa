@@ -18,36 +18,21 @@ import { RaisonNationalite } from "../molecules/RaisonNationalite";
 import { Tutelle } from "../molecules/Tutelle";
 
 import { Personne } from "./Personne";
+import { useFetch } from "../../hooks/useFetch";
+import { Button } from "../atoms/Button";
 
 export function CerfaForm({}) {
     const [sexe, setSexe] = useState<"M" | "F">("M");
-    const [pdf, setPdf] = useState("");
 
     const { demande, setType, setMajeur } = useDemande();
     const { state: adresse2, toggleState: handleAdresse2 } = useToggle();
     const { state: tutelle, toggleState: handleTutelle } = useToggle();
+    const { data: pdf, handleSubmit, loading } = useFetch("/api/cerfa");
 
     const title = `Demande de ${
         demande.type == "cni" ? "carte nationale d'identité" : "passeport"
     }`;
     useTitle({ title: title, deps: [demande.type] });
-
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (!(e.target instanceof HTMLFormElement)) {
-            return;
-        }
-        const values = new FormData(e.target);
-        let data = {} as { [key: string]: FormDataEntryValue };
-        values.forEach((v, k) => {
-            data[k] = v;
-        });
-
-        const response = await axios.post("/api/cerfa", dataToObject(data));
-        if (response.status == 200) {
-            setPdf(response.data);
-        }
-    };
 
     return (
         <div className="container">
@@ -86,15 +71,8 @@ export function CerfaForm({}) {
                     checked={tutelle}
                     onChange={handleTutelle}
                 />
-                <div className="d-grid gap-2">
-                    <input
-                        type="submit"
-                        value="Valider la demande"
-                        className="btn btn-primary"
-                    />
-                </div>
+                <Button disabled={loading}>Valider la demande</Button>
             </form>
-
             <PDF pdf={pdf} />
         </div>
     );
