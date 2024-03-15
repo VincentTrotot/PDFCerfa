@@ -1,9 +1,7 @@
 import React from "react";
-import axios from "axios";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 
-import { dataToObject } from "../../utils/dataToObject";
 import { useDemande } from "../../hooks/useDemande";
 import { useToggle } from "../../hooks/useToggle";
 import { useTitle } from "../../hooks/useTitle";
@@ -56,9 +54,9 @@ export function CerfaForm({}) {
                             onChange={handleAdresse2}
                             label="Ajouter une adresse"
                         />
+                        {adresse2 && <Adresse count="1" />}
                     </>
                 )}
-                {!demande.isMajeur && adresse2 && <Adresse count="1" />}
                 <hr />
                 <Parent count="0" />
                 <hr />
