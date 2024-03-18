@@ -293,9 +293,11 @@ class Cerfa12100_03 extends Cerfa
             if ($index > 1) return;
 
             // Sexe
-            $x = $parent->getSexe() == strtoupper('M') ? 21.8 : 42.5;
-            $y = $index == 0 ? 144.3 : 184.3;
-            $this->cross($x, $y);
+            if ($parent->getSexe() != '') {
+                $x = $parent->getSexe() == strtoupper('M') ? 21.8 : 42.5;
+                $y = $index == 0 ? 144.3 : 184.3;
+                $this->cross($x, $y);
+            }
 
             // Nom
             $nom = $parent->getNom();

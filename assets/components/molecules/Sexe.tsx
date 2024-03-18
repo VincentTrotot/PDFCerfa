@@ -10,7 +10,6 @@ export function Sexe({ id, name, onClickCallback }: RadioProps) {
                 label={"Homme"}
                 name={name}
                 value={"M"}
-                defaultChecked={true}
                 onClickCallback={() => onClickCallback?.("M")}
             />
             <Radio
