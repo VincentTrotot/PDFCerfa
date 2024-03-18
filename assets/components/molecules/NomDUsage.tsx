@@ -18,8 +18,11 @@ export function NomDUsage({ isMajeur }: { isMajeur: boolean }) {
                 onChange={(e) => handleChange(e.currentTarget.value)}
             />
             {nomDUsage !== "" && (
-                <>
-                    <Fieldset legend="Présicez s'il s'agit du nom de votre">
+                <div className="row">
+                    <Fieldset
+                        legend="Présicez s'il s'agit du nom de votre"
+                        className="col"
+                    >
                         <Radio
                             id="origine_nom_usage_pere"
                             name="usager[origineNomDUsage]"
@@ -52,7 +55,10 @@ export function NomDUsage({ isMajeur }: { isMajeur: boolean }) {
                     </Fieldset>
 
                     {isMajeur && (
-                        <Fieldset legend="Souhaitez-vous faire apparaître un mot devant le nom d'usage ?">
+                        <Fieldset
+                            legend="Souhaitez-vous faire apparaître un mot devant le nom d'usage ?"
+                            className="col"
+                        >
                             <Radio
                                 id="mot_avant_nom_usage_aucun"
                                 name="usager[motAvantNomDUsage]"
@@ -74,7 +80,7 @@ export function NomDUsage({ isMajeur }: { isMajeur: boolean }) {
                             />
                         </Fieldset>
                     )}
-                </>
+                </div>
             )}
         </>
     );

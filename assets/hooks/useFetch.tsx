@@ -6,6 +6,8 @@ export function useFetch(url: string) {
     const [data, setData] = useState("");
     const [loading, setLoading] = useState<boolean>(false);
 
+    const eraseData = () => setData("");
+
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         setLoading(true);
         e.preventDefault();
@@ -35,5 +37,6 @@ export function useFetch(url: string) {
         data: data,
         loading: loading,
         handleSubmit: handleSubmit,
+        eraseData: eraseData,
     };
 }

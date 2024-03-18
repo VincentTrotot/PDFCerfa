@@ -5,8 +5,8 @@ import { Radio } from "../atoms/Radio";
 
 export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
     return (
-        <>
-            <Fieldset legend="Demande de">
+        <div className="row">
+            <Fieldset legend="Demande de" className="col">
                 <Radio
                     id="type_demande_cni"
                     name="type_demande"
@@ -25,7 +25,7 @@ export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
                 />
             </Fieldset>
 
-            <Fieldset legend="La demande concerne une personne">
+            <Fieldset legend="La demande concerne une personne" className="col">
                 <Radio
                     id="type_demande_majeure"
                     name="isMajeur"
@@ -43,6 +43,6 @@ export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
                     label="Mineure"
                 />
             </Fieldset>
-        </>
+        </div>
     );
 }

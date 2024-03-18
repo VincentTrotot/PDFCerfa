@@ -25,7 +25,12 @@ export function CerfaForm({}) {
     const { demande, setType, setMajeur } = useDemande();
     const { state: adresse2, toggleState: handleAdresse2 } = useToggle();
     const { state: tutelle, toggleState: handleTutelle } = useToggle();
-    const { data: pdf, handleSubmit, loading } = useFetch("/api/cerfa");
+    const {
+        data: pdf,
+        handleSubmit,
+        loading,
+        eraseData,
+    } = useFetch("/api/cerfa");
 
     const title = `Demande de ${
         demande.type == "cni" ? "carte nationale d'identité" : "passeport"
@@ -71,7 +76,7 @@ export function CerfaForm({}) {
                 />
                 <Button disabled={loading}>Valider la demande</Button>
             </form>
-            <PDF pdf={pdf} />
+            <PDF pdf={pdf} erasePdf={eraseData} />
         </div>
     );
 }

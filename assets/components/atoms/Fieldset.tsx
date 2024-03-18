@@ -4,9 +4,9 @@ type FieldsetProps = {
     legend?: string;
 } & HTMLAttributes<HTMLFieldSetElement>;
 
-export function Fieldset({ legend, ...props }: FieldsetProps) {
+export function Fieldset({ legend, className, ...props }: FieldsetProps) {
     return (
-        <fieldset>
+        <fieldset className={className}>
             {legend && <legend>{legend}</legend>}
             {props.children}
         </fieldset>
