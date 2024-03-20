@@ -8,9 +8,9 @@ type ParentProps = {
     count: string;
 } & HTMLAttributes<HTMLElement>;
 
-export function Parent({ count }: ParentProps) {
+export function Parent({ count, className }: ParentProps) {
     return (
-        <Fieldset legend={`Parent ${+count + 1}`}>
+        <Fieldset legend={`Parent ${+count + 1}`} className={className}>
             <Sexe
                 id={"sexe_parent_" + count}
                 name={"usager[parents][" + count + "][sexe]"}

@@ -80,8 +80,6 @@ h2,
 h3 {
     color: var(--main-color);
 }
-
-fieldset,
 hr {
-    margin: 2rem 0;
+    margin-block: 1rem;
 }

@@ -20,21 +20,20 @@ export function Radio({
     name = name ?? id.toString();
 
     return (
-        <div className="form-check">
-            <label className="form-check-label" htmlFor={id}>
-                <input
-                    className="form-check-input"
-                    type="radio"
-                    id={id}
-                    name={name}
-                    value={value}
-                    defaultChecked={
-                        checked == undefined ? defaultChecked : undefined
-                    }
-                    onChange={onChange}
-                    checked={checked}
-                    onClick={onClickCallback}
-                />
+        <div className={styles.radio}>
+            <input
+                type="radio"
+                id={id}
+                name={name}
+                value={value}
+                defaultChecked={
+                    checked == undefined ? defaultChecked : undefined
+                }
+                onChange={onChange}
+                checked={checked}
+                onClick={onClickCallback}
+            />
+            <label className={styles.radioLabel} htmlFor={id}>
                 {label}
             </label>
         </div>

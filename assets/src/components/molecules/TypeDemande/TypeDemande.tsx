@@ -3,11 +3,12 @@ import { TypeDemandeProps } from "../../../hooks/useDemande";
 import { Fieldset } from "../../atoms/Fieldset/Fieldset";
 import { Radio } from "../../atoms/Radio/Radio";
 import styles from "./TypeDemande.module.css";
+import globals from "../../../styles/modules/globals.module.css";
 
 export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
     return (
-        <div className="row">
-            <Fieldset legend="Demande de" className="col">
+        <div className={globals.flex}>
+            <Fieldset legend="Demande de" className={globals.flexGrow}>
                 <Radio
                     id="type_demande_cni"
                     name="type_demande"
@@ -26,7 +27,10 @@ export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
                 />
             </Fieldset>
 
-            <Fieldset legend="La demande concerne une personne" className="col">
+            <Fieldset
+                legend="La demande concerne une personne"
+                className={globals.flexGrow}
+            >
                 <Radio
                     id="type_demande_majeure"
                     name="isMajeur"

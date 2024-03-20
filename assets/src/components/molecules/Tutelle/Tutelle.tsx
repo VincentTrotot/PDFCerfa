@@ -4,25 +4,20 @@ import { Radio, RadioProps } from "../../atoms/Radio/Radio";
 import { Checkbox } from "../../atoms/Checkbox/Checkbox";
 import styles from "./Tutelle.module.css";
 
-type TutelleProps = {
-    isMajeur: boolean;
-} & RadioProps;
+type TutelleProps = {} & RadioProps;
 
 export function Tutelle({
-    isMajeur,
     checked: tutelle,
     onChange: handleTutelle,
 }: TutelleProps) {
     return (
         <>
-            {isMajeur && (
-                <Checkbox
-                    id="isTutelle"
-                    onChange={handleTutelle}
-                    checked={tutelle}
-                    label="Le demandeur est un majeur en tutelle"
-                />
-            )}
+            <Checkbox
+                id="isTutelle"
+                onChange={handleTutelle}
+                checked={tutelle}
+                label="Le demandeur est un majeur en tutelle"
+            />
             {tutelle && (
                 <Fieldset legend="Si le demandeur est un majeur en tutelle, le tuteur">
                     <Radio

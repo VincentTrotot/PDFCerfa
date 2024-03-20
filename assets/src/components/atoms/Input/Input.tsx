@@ -26,17 +26,9 @@ export function Input({
 }: InputProps) {
     name = name ?? id.toString();
     return (
-        <div className="mb-3">
-            <label className="form-label" htmlFor={id}>
-                {label}
-            </label>
-            <input
-                className="form-control"
-                type={type}
-                id={id}
-                name={name}
-                onChange={onChange}
-            />
+        <div className={styles.input}>
+            <label htmlFor={id}>{label}</label>
+            <input type={type} id={id} name={name} onChange={onChange} />
         </div>
     );
 }

@@ -1,6 +1,8 @@
 import React from "react";
+import { clsx } from "clsx";
 
 import styles from "./PDF.module.css";
+import globals from "../../../styles/modules/globals.module.css";
 
 export function PDF({ pdf, erasePdf }: { pdf: string; erasePdf: () => void }) {
     if (pdf == "") return;
@@ -13,16 +15,16 @@ export function PDF({ pdf, erasePdf }: { pdf: string; erasePdf: () => void }) {
                     className={styles.preview}
                     src={pdf && "data:application/pdf;base64," + pdf}
                 ></iframe>
-                <div>
+                <div className={clsx(styles.buttons)}>
                     <a
                         href={"data:application/pdf;base64," + pdf}
                         download="cerfa.pdf"
-                        className="btn btn-light mt-5 mb-5 mx-2"
+                        className={clsx(styles.button, styles.download)}
                     >
                         Télécharger le PDF
                     </a>
                     <button
-                        className="btn btn-outline-light mx-2"
+                        className={clsx(styles.button, styles.continue)}
                         onClick={erasePdf}
                     >
                         Continuer les modifications

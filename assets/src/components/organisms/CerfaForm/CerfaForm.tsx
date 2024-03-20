@@ -20,6 +20,7 @@ import { useFetch } from "../../../hooks/useFetch";
 import { Button } from "../../atoms/Button/Button";
 
 import styles from "./CerfaForm.module.css";
+import globals from "../../../styles/modules/globals.module.css";
 
 export function CerfaForm({}) {
     const [sexe, setSexe] = useState<"M" | "F">("M");
@@ -41,7 +42,7 @@ export function CerfaForm({}) {
 
     return (
         <div className={styles.cerfaForm}>
-            <h1>{title}</h1>
+            <h3>{title}</h3>
             <form onSubmit={handleSubmit}>
                 <TypeDemande
                     demande={demande}
@@ -51,31 +52,30 @@ export function CerfaForm({}) {
                 <hr />
                 <Personne demande={demande} setSexe={setSexe} />
                 <hr />
-                <Adresse count="0" />
+                <div className={globals.flex}>
+                    <Adresse count="0" className={globals.flexGrow} />
+                    {!demande.isMajeur && adresse2 && (
+                        <Adresse count="1" className={globals.flexGrow} />
+                    )}
+                </div>
                 {!demande.isMajeur && (
-                    <>
-                        <hr />
-                        <Checkbox
-                            id="adresse2"
-                            checked={adresse2}
-                            onChange={handleAdresse2}
-                            label="Ajouter une adresse"
-                        />
-                        {adresse2 && <Adresse count="1" />}
-                    </>
+                    <Checkbox
+                        id="adresse2"
+                        checked={adresse2}
+                        onChange={handleAdresse2}
+                        label="Ajouter une adresse"
+                    />
                 )}
                 <hr />
-                <Parent count="0" />
-                <hr />
-                <Parent count="1" />
+                <div className={globals.flex}>
+                    <Parent count="0" className={globals.flexGrow} />
+                    <Parent count="1" className={globals.flexGrow} />
+                </div>
                 <hr />
                 <RaisonNationalite sexe={sexe} isMajeur={demande.isMajeur} />
-                <Tutelle
-                    id=""
-                    isMajeur={demande.isMajeur}
-                    checked={tutelle}
-                    onChange={handleTutelle}
-                />
+                {demande.isMajeur && (
+                    <Tutelle id="" checked={tutelle} onChange={handleTutelle} />
+                )}
                 <Button disabled={loading}>Valider la demande</Button>
             </form>
             <PDF pdf={pdf} erasePdf={eraseData} />

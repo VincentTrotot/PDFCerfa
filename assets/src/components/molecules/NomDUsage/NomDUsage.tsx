@@ -3,6 +3,7 @@ import { Fieldset } from "../../atoms/Fieldset/Fieldset";
 import { Input } from "../../atoms/Input/Input";
 import { Radio } from "../../atoms/Radio/Radio";
 import styles from "./NomDUsage.module.css";
+import globals from "../../../styles/modules/globals.module.css";
 
 export function NomDUsage({ isMajeur }: { isMajeur: boolean }) {
     const [nomDUsage, setNomDUsage] = useState("");
@@ -19,10 +20,10 @@ export function NomDUsage({ isMajeur }: { isMajeur: boolean }) {
                 onChange={(e) => handleChange(e.currentTarget.value)}
             />
             {nomDUsage !== "" && (
-                <div className="row">
+                <div className={globals.flex}>
                     <Fieldset
                         legend="Présicez s'il s'agit du nom de votre"
-                        className="col"
+                        className={globals.flexGrow}
                     >
                         <Radio
                             id="origine_nom_usage_pere"
@@ -58,7 +59,7 @@ export function NomDUsage({ isMajeur }: { isMajeur: boolean }) {
                     {isMajeur && (
                         <Fieldset
                             legend="Souhaitez-vous faire apparaître un mot devant le nom d'usage ?"
-                            className="col"
+                            className={globals.flexGrow}
                         >
                             <Radio
                                 id="mot_avant_nom_usage_aucun"

@@ -1,19 +1,17 @@
 import React from "react";
 import { InputProps } from "../Input/Input";
-import styles from "./DatalistInput.module.css";
+import styles from "../Input/Input.module.css";
 
 export function DatalistInput({ id, label, datalist }: InputProps) {
     return (
-        <div className="form-group">
-            <label className="form-label" htmlFor={id}>
-                {label}
-            </label>
+        <div className={styles.input}>
+            <label htmlFor={id}>{label}</label>
             <input
-                className="form-control"
                 type="text"
                 id={id}
                 name={id}
                 list={datalist?.listName}
+                autoComplete="off"
             />
             <datalist id={datalist?.listName}>
                 {datalist?.listItems.map((d) => (

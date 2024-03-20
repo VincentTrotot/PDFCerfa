@@ -1,17 +1,15 @@
 import React from "react";
 import { InputProps } from "../Input/Input";
-import styles from "./SelectInput.module.css";
+import styles from "../Input/Input.module.css";
 
 type SelectInputProps = {
     options: string[];
 } & InputProps;
 export function SelectInput({ id, name, label, options }: SelectInputProps) {
     return (
-        <div className="mb-3">
-            <label htmlFor={id} className="form-label">
-                Couleur des yeux
-            </label>
-            <select className="form-select" name={name} id={id}>
+        <div className={styles.input}>
+            <label htmlFor={id}>{label}</label>
+            <select name={name} id={id}>
                 {options.map((o) => (
                     <option key={o} value={o}>
                         {o}

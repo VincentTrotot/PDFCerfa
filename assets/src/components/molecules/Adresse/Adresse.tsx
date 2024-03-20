@@ -7,9 +7,9 @@ type AdresseProps = {
     count: string;
 } & HTMLAttributes<HTMLElement>;
 
-export function Adresse({ count }: AdresseProps) {
+export function Adresse({ count, className }: AdresseProps) {
     return (
-        <Fieldset legend={`Adresse ${+count + 1}`}>
+        <Fieldset legend={`Adresse ${+count + 1}`} className={className}>
             <Input
                 id={"usager[adresses][" + count + "][ligne1]"}
                 label="Ligne 1"
