@@ -4,25 +4,31 @@ import { Fieldset } from "../../atoms/Fieldset/Fieldset";
 import { Radio } from "../../atoms/Radio/Radio";
 import styles from "./TypeDemande.module.css";
 import globals from "../../../styles/modules/globals.module.css";
+import { Checkbox } from "../../atoms/Checkbox/Checkbox";
 
-export function TypeDemande({ demande, setType, setMajeur }: TypeDemandeProps) {
+export function TypeDemande({
+    demande,
+    setCNI,
+    setPasseport,
+    setMajeur,
+}: TypeDemandeProps) {
     return (
         <div className={globals.flex}>
             <Fieldset legend="Demande de" className={globals.flexGrow}>
-                <Radio
+                <Checkbox
                     id="type_demande_cni"
-                    name="type_demande"
+                    name="type_demande_cni"
                     value="cni"
-                    checked={demande.type === "cni"}
-                    onChange={() => setType("cni")}
+                    checked={demande.type.cni}
+                    onChange={() => setCNI(!demande.type.cni)}
                     label="Carte nationale d'identité"
                 />
-                <Radio
+                <Checkbox
                     id="type_demande_passeport"
-                    name="type_demande"
+                    name="type_demande_passeport"
                     value="passeport"
-                    checked={demande.type === "passeport"}
-                    onChange={() => setType("passeport")}
+                    checked={demande.type.passeport}
+                    onChange={() => setPasseport(!demande.type.passeport)}
                     label="Passeport"
                 />
             </Fieldset>

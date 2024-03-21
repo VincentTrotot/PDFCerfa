@@ -10,7 +10,7 @@ export type RaisonNationaliteProps = {
 
 export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
     return (
-        <>
+        <div className={styles.raisonNationalite}>
             <Fieldset
                 legend={
                     isMajeur
@@ -140,6 +140,6 @@ export function RaisonNationalite({ sexe, isMajeur }: RaisonNationaliteProps) {
                     </>
                 )}
             </Fieldset>
-        </>
+        </div>
     );
 }

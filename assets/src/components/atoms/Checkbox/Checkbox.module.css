@@ -1,6 +1,5 @@
 .checkbox {
     position: relative;
-    margin-block: 2rem;
 }
 .checkbox input[type="checkbox"] {
     position: absolute;

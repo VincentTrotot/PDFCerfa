@@ -25,7 +25,7 @@ import globals from "../../../styles/modules/globals.module.css";
 export function CerfaForm({}) {
     const [sexe, setSexe] = useState<"M" | "F">("M");
 
-    const { demande, setType, setMajeur } = useDemande();
+    const { demande, setCNI, setPasseport, setMajeur } = useDemande();
     const { state: adresse2, toggleState: handleAdresse2 } = useToggle();
     const { state: tutelle, toggleState: handleTutelle } = useToggle();
     const {
@@ -35,9 +35,7 @@ export function CerfaForm({}) {
         eraseData,
     } = useFetch("/api/cerfa");
 
-    const title = `Demande de ${
-        demande.type == "cni" ? "carte nationale d'identité" : "passeport"
-    }`;
+    const title = getTitle(demande.type.cni, demande.type.passeport);
     useTitle({ title: title, deps: [demande.type] });
 
     return (
@@ -46,7 +44,8 @@ export function CerfaForm({}) {
             <form onSubmit={handleSubmit}>
                 <TypeDemande
                     demande={demande}
-                    setType={setType}
+                    setCNI={setCNI}
+                    setPasseport={setPasseport}
                     setMajeur={setMajeur}
                 />
                 <hr />
@@ -82,3 +81,17 @@ export function CerfaForm({}) {
         </div>
     );
 }
+
+const getTitle = (cni: boolean, passeport: boolean) => {
+    let title = "Demande de ";
+    if (cni && passeport) {
+        title += "carte nationale d'identité et de passeport";
+    } else if (cni) {
+        title += "carte nationale d'identité";
+    } else if (passeport) {
+        title += "passeport";
+    } else {
+        title = "Choisissez un type de demande";
+    }
+    return title;
+};
