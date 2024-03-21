@@ -1,0 +1,7 @@
+.fieldset {
+    border: 1px solid var(--middle-gray);
+}
+
+.fieldset legend {
+    font-weight: 900;
+}

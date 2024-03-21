@@ -1,0 +1,11 @@
+.footer {
+    background-color: var(--main-color, rgb(0, 0, 75));
+    color: var(--secondary-color);
+    font-family: "JetBrains Mono", monospace;
+    margin-top: 3rem;
+    padding: 2rem;
+    text-align: center;
+}
+.footerLink {
+    color: var(--secondary-color);
+}

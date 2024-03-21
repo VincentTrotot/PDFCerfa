@@ -1,0 +1,14 @@
+.flexGrow {
+    margin-block: 2rem;
+}
+@media only screen and (min-device-width: 480px) {
+    .flex {
+        display: flex;
+        gap: 1rem;
+        margin-block: auto;
+    }
+
+    .flexGrow {
+        flex-grow: 1;
+    }
+}

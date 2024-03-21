@@ -1,0 +1,67 @@
+.pdfModal {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.pdfModalContainer {
+    width: 90%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 2em;
+}
+
+.preview {
+    height: 70vh;
+    width: 100%;
+}
+
+.button {
+    all: unset;
+    outline: revert;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+    color: var(--secondary-color);
+    background-color: var(--main-color);
+    text-align: center;
+}
+
+.button:hover {
+    background-color: var(--light-gray);
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+.continue {
+    border: 1px solid var(--secondary-color);
+    background-color: unset;
+    color: var(--secondary-color);
+}
+
+.continue:hover {
+    color: #000;
+}
+
+.buttons {
+    display: flex;
+    margin-block: auto;
+}
+
+.buttons .button {
+    flex-grow: 1;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .buttons {
+        flex-direction: column;
+    }
+    .buttons .button {
+        margin-block: 0.5rem;
+    }
+}

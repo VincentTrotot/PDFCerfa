@@ -24,13 +24,16 @@ class UsagerType extends AbstractType
                 'choices' => [
                     'Homme' => 'M',
                     'Femme' => 'F'
-                ]
+                ],
+                'expanded' => true,
+                'multiple' => false,
             ])
             ->add('nom', TextType::class, [
                 'required' => false,
             ])
             ->add('nomDUsage', TextType::class, [
                 'required' => false,
+                'label' => 'Nom d\'usage',
             ])
             ->add('origineNomDUsage', ChoiceType::class, [
                 'choices' => [
@@ -39,14 +42,20 @@ class UsagerType extends AbstractType
                     'Mère' => 'mere',
                     'Époux' => 'epoux',
                     'Épouse' => 'epouse',
-                ]
+                ],
+                'expanded' => true,
+                'multiple' => false,
+                'label' => 'Origine du nom d\'usage',
             ])
             ->add('motAvantNomDUsage', ChoiceType::class, [
                 'choices' => [
-                    '---' => '',
-                    'époux(se)' => 'époux(se)',
+                    'aucun' => '',
+                    'époux(se)' => 'epoux(se)',
                     'veuf(ve)' => 'veuf(ve)'
-                ]
+                ],
+                'expanded' => true,
+                'multiple' => false,
+                'label' => 'Mot avant le nom d\'usage',
             ])
             ->add('prenoms', TextType::class)
             ->add('dateNaissance', DateType::class)

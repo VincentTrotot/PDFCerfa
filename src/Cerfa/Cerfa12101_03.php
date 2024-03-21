@@ -141,6 +141,9 @@ class Cerfa12101_03 extends Cerfa
     {
         $taille = $this->usager->getTaille();
         if ($taille == 0) return;
+        if ($taille < 100) {
+            $taille = "0" . (string)$taille;
+        }
 
         $this->writeInBoxes($taille, 20.3, 93, 3, 1);
     }
@@ -148,7 +151,7 @@ class Cerfa12101_03 extends Cerfa
     private function writeDateNaissance()
     {
         $date = $this->usager->getDateNaissance();
-        if ($date === NULL) return;
+        if ($date === null) return;
 
         $jour = $date->format('d');
         $mois = $date->format('m');
@@ -170,7 +173,11 @@ class Cerfa12101_03 extends Cerfa
     private function writeDepartementNaissance()
     {
         $departement = (string) $this->usager->getDepartementNaissance();
-        if (strlen($departement) == 2) {
+        if ($departement == "0") return;
+        if (strlen($departement) == 1) {
+            $departement = "0" . $departement;
+            $this->writeInBoxes($departement, 59.2, 105);
+        } elseif (strlen($departement) == 2) {
             $this->writeInBoxes($departement, 59.2, 105);
         } elseif (strlen($departement) == 3) {
             $this->writeInBoxes($departement, 54.5, 105);
@@ -233,9 +240,11 @@ class Cerfa12101_03 extends Cerfa
             if ($index > 1) return;
 
             // Sexe
-            $x = $parent->getSexe() == strtoupper('M') ? 22.3 : 43.4;
-            $y = $index == 0 ? 174.3 : 209.3;
-            $this->cross($x, $y);
+            if ($parent->getSexe() != '') {
+                $x = $parent->getSexe() == strtoupper('M') ? 22.3 : 43.4;
+                $y = $index == 0 ? 174.3 : 209.3;
+                $this->cross($x, $y);
+            }
 
             // Nom
             $nom = $parent->getNom();
@@ -249,13 +258,15 @@ class Cerfa12101_03 extends Cerfa
 
             // Date de naissance
             $date = $parent->getDateNaissance();
-            $jour = $date->format('d');
-            $mois = $date->format('m');
-            $annee = $date->format('Y');
-            $y = $index == 0 ? 196.4 : 231.7;
-            $this->writeInBoxes($jour, 25, $y, 2, 1);
-            $this->writeInBoxes($mois, 39.4, $y, 2, 1);
-            $this->writeInBoxes($annee, 54.1, $y, 4, 1);
+            if ($date !== null) {
+                $jour = $date->format('d');
+                $mois = $date->format('m');
+                $annee = $date->format('Y');
+                $y = $index == 0 ? 196.4 : 231.7;
+                $this->writeInBoxes($jour, 25, $y, 2, 1);
+                $this->writeInBoxes($mois, 39.4, $y, 2, 1);
+                $this->writeInBoxes($annee, 54.1, $y, 4, 1);
+            }
 
             // Lieu de naissance
             $lieu = $parent->getVilleNaissance();

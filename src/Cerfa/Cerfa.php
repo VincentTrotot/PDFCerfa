@@ -68,13 +68,14 @@ class Cerfa
         string $text,
         $x,
         $y,
+        $align = 'C'
     ) {
         $text = mb_convert_encoding($text, 'ISO-8859-1', 'UTF-8');
 
         $this->pdf->SetFont('Arial', 'B', 10);
         $this->pdf->setXY($x, $y);
 
-        $this->pdf->Cell(3.8, 4.9, $text, 0, 0, 'C');
+        $this->pdf->Cell(3.8, 4.9, $text, 0, 0, $align);
     }
 
     protected function cross($x, $y, $big = false)
@@ -94,19 +95,21 @@ class Cerfa
         $this->pdf->SetFont('Arial', 'B', 10);
 
         // Nom
-        $this->writeText($this->usager->getNom(), 34, 105.5);
+        $this->writeText($this->usager->getNom(), 28, 105.5, 'L');
 
         // Prénom
-        $this->writeText($this->usager->getPrenoms(), 48, 115);
+        $this->writeText($this->usager->getPrenoms(), 35, 115, 'L');
 
         // Date de naissance 
         $date = $this->usager->getDateNaissance();
-        $jour = $date->format('d');
-        $mois = $date->format('m');
-        $annee = $date->format('Y');
-        $this->writeInBoxes($jour, 46.5, 125, 2, 1, false, -0.1);
-        $this->writeInBoxes($mois, 56.9, 125, 2, 1, false, -0.1);
-        $this->writeInBoxes($annee, 66.8, 125, 4, 1, false, -0.1);
+        if ($date !== null) {
+            $jour = $date->format('d');
+            $mois = $date->format('m');
+            $annee = $date->format('Y');
+            $this->writeInBoxes($jour, 46.5, 125, 2, 1, false, -0.1);
+            $this->writeInBoxes($mois, 56.9, 125, 2, 1, false, -0.1);
+            $this->writeInBoxes($annee, 66.8, 125, 4, 1, false, -0.1);
+        }
     }
 
     /**
