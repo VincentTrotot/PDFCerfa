@@ -9,7 +9,7 @@ class Usager extends Personne
     private string $origineNomDUsage;
     private string $motAvantNomDUsage;
     private int $taille;
-    private int $departementNaissance;
+    private string $departementNaissance;
     private string $paysNaissance;
     private array $adresses;
     private string $telephone;
@@ -51,7 +51,7 @@ class Usager extends Personne
         $this->setTaille(isset($usager['taille']) ? (int)$usager['taille'] : '');
         $this->setDateNaissance(isset($usager['dateNaissance']) ? $usager['dateNaissance'] : '');
         $this->setVilleNaissance(isset($usager['villeNaissance']) ? $usager['villeNaissance'] : '');
-        $this->setDepartementNaissance(isset($usager['departementNaissance']) ? (int)$usager['departementNaissance'] : '');
+        $this->setDepartementNaissance(isset($usager['departementNaissance']) ? $usager['departementNaissance'] : '');
         $this->setPaysNaissance(isset($usager['paysNaissance']) ? $usager['paysNaissance'] : '');
 
         $adresse1 = new Adresse();
