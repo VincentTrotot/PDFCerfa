@@ -32,8 +32,8 @@ class HomeController extends AbstractController
 
         $pdf = $data['isMajeur'] == "1" ? new Cerfa12100_03($usager) : new Cerfa12101_03($usager);
 
-        if ($data['type_demande_cni']) $pdf->setCNI();
-        if ($data['type_demande_passeport']) $pdf->setPasseport();
+        if (isset($data['type_demande_cni'])) $pdf->setCNI();
+        if (isset($data['type_demande_passeport'])) $pdf->setPasseport();
 
         $pdf->setRaisonNationalite($data['raisonNationalite']);
 
