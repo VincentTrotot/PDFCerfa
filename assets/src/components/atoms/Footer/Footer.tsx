@@ -4,7 +4,6 @@ import styles from "./Footer.module.css";
 interface FooterProps {}
 
 export function Footer() {
-    console.log("footer");
     return (
         <footer className={styles.footer}>
             <div>
