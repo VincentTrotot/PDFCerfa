@@ -279,4 +279,32 @@ class Cerfa12101_03 extends Cerfa
             $this->writeInBoxes($nationalite, 74, $y, 26);
         }
     }
+
+    public function addSecondPage()
+    {
+        parent::addSecondPage();
+        $this->writeText($this->usager->getIdentiteTuteur(), 32, 163.5, 'L');
+        $this->writeText($this->usager->getDateNaissanceTuteur()->format('d/m/Y'), 23, 180, 'L');
+        $this->writeText($this->usager->getAdresseLigne1Tuteur(), 23, 186.3, 'L');
+        $this->writeText($this->usager->getAdresseLigne2Tuteur(), 23, 191.8, 'L');
+        $this->writeText($this->usager->getNom(), 142, 155.5, 'L');
+        $this->writeText($this->usager->getPrenoms(), 147.7, 161.5, 'L');
+
+        switch ($this->usager->getQualiteTuteur()) {
+            case 'F':
+                $this->cross(50.7, 169.4);
+                break;
+            case 'M':
+                $this->cross(65.5, 169.4);
+                break;
+            case 'tuteur':
+                $this->cross(82.7, 169.4);
+                break;
+            case 'autre':
+                $this->cross(70.3, 174.2);
+                break;
+        }
+
+        $this->cross(98.5, 156);
+    }
 }

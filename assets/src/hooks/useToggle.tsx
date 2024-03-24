@@ -7,8 +7,13 @@ export function useToggle(initialState = false) {
         setState(!state);
     };
 
+    const defineState = (b: boolean) => {
+        setState(b);
+    };
+
     return {
         state: state,
         toggleState: toggleState,
+        defineState: defineState,
     };
 }

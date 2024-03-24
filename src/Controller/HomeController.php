@@ -41,6 +41,7 @@ class HomeController extends AbstractController
             $pdf->setSituationTuteur((int)$data['tutelle']);
         }
 
+
         $pdf->addSecondPage();
 
         $pdf = base64_encode($pdf->Output('S', 'cerfa.pdf', true));

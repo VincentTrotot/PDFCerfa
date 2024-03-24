@@ -5,15 +5,20 @@ namespace App\Cerfa;
 class Usager extends Personne
 {
 
-    private string $nomDUsage;
-    private string $origineNomDUsage;
-    private string $motAvantNomDUsage;
-    private int $taille;
-    private string $departementNaissance;
-    private string $paysNaissance;
-    private array $adresses;
-    private string $telephone;
-    private string $couleurYeux;
+    private string|null $nomDUsage;
+    private string|null $origineNomDUsage;
+    private string|null $motAvantNomDUsage;
+    private int|null $taille;
+    private string|null $departementNaissance;
+    private string|null $paysNaissance;
+    private array|null $adresses;
+    private string|null $telephone;
+    private string|null $couleurYeux;
+    private string|null $identiteTuteur;
+    private string|null $qualiteTuteur;
+    private string|null $adresseLigne1Tuteur;
+    private string|null $adresseLigne2Tuteur;
+    private \DateTime|string|null $dateNaissanceTuteur;
 
     private array $parents;
 
@@ -28,6 +33,11 @@ class Usager extends Personne
         $this->adresses = array();
         $this->telephone = '';
         $this->couleurYeux = '';
+        $this->identiteTuteur = '';
+        $this->qualiteTuteur = '';
+        $this->adresseLigne1Tuteur = '';
+        $this->adresseLigne2Tuteur = '';
+        $this->dateNaissanceTuteur = '';
 
         $this->parents = array();
     }
@@ -57,7 +67,7 @@ class Usager extends Personne
         $adresse1 = new Adresse();
         $_adresse1 = $usager['adresses'][0];
         $adresse1->setLigne1(isset($_adresse1['ligne1']) ? $_adresse1['ligne1'] : '');
-        $adresse1->setLigne2(isset($data['ager[adresses][0][ligne2']) ? $_adresse1['ligne2'] : '');
+        $adresse1->setLigne2(isset($_adresse1['ligne2']) ? $_adresse1['ligne2'] : '');
         $adresse1->setCodePostal(isset($_adresse1['codePostal']) ? $_adresse1['codePostal'] : '');
         $adresse1->setVille(isset($_adresse1['ville']) ? $_adresse1['ville'] : '');
         $this->addAdresse($adresse1);
@@ -96,6 +106,36 @@ class Usager extends Personne
 
         $this->addParent($parent1);
         $this->addParent($parent2);
+
+        if (isset($data['representant_legal'])) {
+            if ($data['representant_legal'] == "parent1") {
+                $this->setIdentiteTuteur($this->getParent(1)->getNom() . ' ' . $this->getParent(1)->getPrenoms());
+                $this->setDateNaissanceTuteur($this->getParent(1)->getDateNaissance());
+                $this->setQualiteTuteur($this->getParent(1)->getSexe());
+            } elseif ($data['representant_legal'] == "parent2") {
+                $this->setIdentiteTuteur($this->getParent(2)->getNom() . ' ' . $this->getParent(2)->getPrenoms());
+                $this->setDateNaissanceTuteur($this->getParent(2)->getDateNaissance());
+                $this->setQualiteTuteur($this->getParent(2)->getSexe());
+            } else {
+                $this->setQualiteTuteur($data['representant_legal']);
+
+                $this->setIdentiteTuteur($data['usager']['tuteur']['nom'] . ' ' . $data['usager']['tuteur']['prenoms']);
+                $this->setDateNaissanceTuteur(new \DateTime($data['usager']['tuteur']['dateNaissance']));
+            }
+
+            if (isset($data['representant_legal_adresse'])) {
+                if ($data['representant_legal_adresse'] == "adresse1") {
+                    $this->setAdresseLigne1Tuteur($this->getAdresses()[0]->getLigne1() . ' - ' . $this->getAdresses()[0]->getLigne2());
+                    $this->setAdresseLigne2Tuteur($this->getAdresses()[0]->getCodePostal() . ' ' . $this->getAdresses()[0]->getVille());
+                } elseif ($data['representant_legal_adresse'] == "adresse2") {
+                    $this->setAdresseLigne1Tuteur($this->getAdresses()[1]->getLigne1() . ' - ' . $this->getAdresses()[1]->getLigne2());
+                    $this->setAdresseLigne2Tuteur($this->getAdresses()[1]->getCodePostal() . ' ' . $this->getAdresses()[1]->getVille());
+                } elseif ($data['representant_legal_adresse'] == "adresseAutre") {
+                    $this->setAdresseLigne1Tuteur($data['usager']['adresses']['tuteur']['ligne1']);
+                    $this->setAdresseLigne2Tuteur($data['usager']['adresses']['tuteur']['codePostal'] . ' ' . $data['usager']['adresses']['tuteur']['ville']);
+                }
+            }
+        }
     }
 
     /**
@@ -262,7 +302,7 @@ class Usager extends Personne
         return $this;
     }
 
-    public function getParent(int $index)
+    public function getParent(int $index): Personne
     {
         return ($index - 1 <= count($this->parents)) ? $this->parents[$index - 1] : new Personne();
     }
@@ -317,6 +357,106 @@ class Usager extends Personne
     public function setAdresses(array $adresses)
     {
         $this->adresses = $adresses;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of identiteTuteur
+     */
+    public function getIdentiteTuteur()
+    {
+        return $this->identiteTuteur;
+    }
+
+    /**
+     * Set the value of identiteTuteur
+     *
+     * @return  self
+     */
+    public function setIdentiteTuteur($identiteTuteur)
+    {
+        $this->identiteTuteur = $identiteTuteur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of qualiteTuteur
+     */
+    public function getQualiteTuteur()
+    {
+        return $this->qualiteTuteur;
+    }
+
+    /**
+     * Set the value of qualiteTuteur
+     *
+     * @return  self
+     */
+    public function setQualiteTuteur($qualiteTuteur)
+    {
+        $this->qualiteTuteur = $qualiteTuteur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of adresseLigne1Tuteur
+     */
+    public function getAdresseLigne1Tuteur()
+    {
+        return $this->adresseLigne1Tuteur;
+    }
+
+    /**
+     * Set the value of adresseLigne1Tuteur
+     *
+     * @return  self
+     */
+    public function setAdresseLigne1Tuteur($adresseLigne1Tuteur)
+    {
+        $this->adresseLigne1Tuteur = $adresseLigne1Tuteur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of adresseLigne2Tuteur
+     */
+    public function getAdresseLigne2Tuteur()
+    {
+        return $this->adresseLigne2Tuteur;
+    }
+
+    /**
+     * Set the value of adresseLigne2Tuteur
+     *
+     * @return  self
+     */
+    public function setAdresseLigne2Tuteur($adresseLigne2Tuteur)
+    {
+        $this->adresseLigne2Tuteur = $adresseLigne2Tuteur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dateNaissanceTuteur
+     */
+    public function getDateNaissanceTuteur()
+    {
+        return $this->dateNaissanceTuteur;
+    }
+
+    /**
+     * Set the value of dateNaissanceTuteur
+     *
+     * @return  self
+     */
+    public function setDateNaissanceTuteur($dateNaissanceTuteur)
+    {
+        $this->dateNaissanceTuteur = $dateNaissanceTuteur;
 
         return $this;
     }
