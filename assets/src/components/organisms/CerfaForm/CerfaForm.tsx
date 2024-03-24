@@ -21,13 +21,16 @@ import { Button } from "../../atoms/Button/Button";
 
 import styles from "./CerfaForm.module.css";
 import globals from "../../../styles/modules/globals.module.css";
+import { useCerfaFormStore } from "../../../hooks/useCerfaFormStore";
+import { Tuteur } from "../../molecules/Tuteur/Tuteur";
+import { Fieldset } from "../../atoms/Fieldset/Fieldset";
 
 export function CerfaForm({}) {
-    const [sexe, setSexe] = useState<"M" | "F">("M");
+    const { cni, passeport, isMajeur, sexe } = useCerfaFormStore();
 
-    const { demande, setCNI, setPasseport, setMajeur } = useDemande();
     const { state: adresse2, toggleState: handleAdresse2 } = useToggle();
     const { state: tutelle, toggleState: handleTutelle } = useToggle();
+
     const {
         data: pdf,
         handleSubmit,
@@ -35,29 +38,24 @@ export function CerfaForm({}) {
         eraseData,
     } = useFetch("/api/cerfa");
 
-    const title = getTitle(demande.type.cni, demande.type.passeport);
-    useTitle({ title: title, deps: [demande.type] });
+    const title = getTitle(cni, passeport);
+    useTitle({ title: title, deps: [cni, passeport] });
 
     return (
         <div className={styles.cerfaForm}>
             <h3>{title}</h3>
             <form onSubmit={handleSubmit}>
-                <TypeDemande
-                    demande={demande}
-                    setCNI={setCNI}
-                    setPasseport={setPasseport}
-                    setMajeur={setMajeur}
-                />
+                <TypeDemande />
                 <hr />
-                <Personne demande={demande} setSexe={setSexe} />
+                <Personne />
                 <hr />
                 <div className={globals.flex}>
                     <Adresse count="0" className={globals.flexGrow} />
-                    {!demande.isMajeur && adresse2 && (
+                    {!isMajeur && adresse2 && (
                         <Adresse count="1" className={globals.flexGrow} />
                     )}
                 </div>
-                {!demande.isMajeur && (
+                {!isMajeur && (
                     <Checkbox
                         id="adresse2"
                         checked={adresse2}
@@ -70,11 +68,15 @@ export function CerfaForm({}) {
                     <Parent count="0" className={globals.flexGrow} />
                     <Parent count="1" className={globals.flexGrow} />
                 </div>
+
                 <hr />
-                <RaisonNationalite sexe={sexe} isMajeur={demande.isMajeur} />
-                {demande.isMajeur && (
+                <RaisonNationalite sexe={sexe} isMajeur={isMajeur} />
+                {isMajeur ? (
                     <Tutelle id="" checked={tutelle} onChange={handleTutelle} />
+                ) : (
+                    <Tuteur isAdresse2={adresse2}></Tuteur>
                 )}
+
                 <Button disabled={loading}>Valider la demande</Button>
             </form>
             <PDF pdf={pdf} erasePdf={eraseData} />

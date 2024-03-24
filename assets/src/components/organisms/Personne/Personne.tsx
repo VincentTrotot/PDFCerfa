@@ -7,13 +7,9 @@ import { DatalistInput } from "../../atoms/DatalistInput/DatalistInput";
 import { SelectInput } from "../../atoms/SelectInput/SelectInput";
 import { Demande } from "../../../hooks/useDemande";
 import styles from "./Personne.module.css";
+import { useCerfaFormStore } from "../../../hooks/useCerfaFormStore";
 
-type PersoneProps = {
-    demande: Demande;
-    setSexe: (sexe: "M" | "F") => void;
-} & HTMLAttributes<HTMLDivElement>;
-
-export function Personne({ demande, setSexe }: PersoneProps) {
+export function Personne() {
     const couleursYeux = [
         "Marrons",
         "Verts",
@@ -29,6 +25,8 @@ export function Personne({ demande, setSexe }: PersoneProps) {
         "Vairons",
     ];
 
+    const { isMajeur, passeport, setSexe } = useCerfaFormStore();
+
     return (
         <>
             <Sexe
@@ -37,7 +35,7 @@ export function Personne({ demande, setSexe }: PersoneProps) {
                 onClickCallback={setSexe}
             />
             <Input id="usager[nom]" label="Nom" />
-            <NomDUsage isMajeur={demande.isMajeur} />
+            <NomDUsage isMajeur={isMajeur} />
             <Input id="usager[prenoms]" label="Prénom(s)" />
             <Input id="usager[taille]" label="Taille" type="number" />
             <Input
@@ -59,7 +57,7 @@ export function Personne({ demande, setSexe }: PersoneProps) {
             <Input id="usager[paysNaissance]" label="Pays de naissance" />
             <Input id="usager[telephone]" label="Numéro de téléphone" />
 
-            {demande.type.passeport && (
+            {passeport && (
                 <SelectInput
                     id="personne_couleur_yeux"
                     name="usager[couleurYeux]"
