@@ -65,14 +65,15 @@ class Cerfa
     }
 
     protected function writeText(
-        string $text,
+        string|null $text,
         $x,
         $y,
         $align = 'C'
     ) {
+        if ($text == null) return;
         $text = mb_convert_encoding($text, 'ISO-8859-1', 'UTF-8');
 
-        $this->pdf->SetFont('Arial', 'B', 10);
+        $this->pdf->SetFont('Arial', 'B', 9);
         $this->pdf->setXY($x, $y);
 
         $this->pdf->Cell(3.8, 4.9, $text, 0, 0, $align);
