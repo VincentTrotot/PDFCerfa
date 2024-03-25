@@ -284,7 +284,10 @@ class Cerfa12101_03 extends Cerfa
     {
         parent::addSecondPage();
         $this->writeText($this->usager->getIdentiteTuteur(), 32, 163.5, 'L');
-        $this->writeText($this->usager->getDateNaissanceTuteur()->format('d/m/Y'), 23, 180, 'L');
+        if ($this->usager->getDateNaissanceTuteur() !== "" && $this->usager->getDateNaissanceTuteur() !== null) {
+
+            $this->writeText($this->usager->getDateNaissanceTuteur()->format('d/m/Y'), 23, 180, 'L');
+        }
         $this->writeText($this->usager->getAdresseLigne1Tuteur(), 23, 186.3, 'L');
         $this->writeText($this->usager->getAdresseLigne2Tuteur(), 23, 191.8, 'L');
         $this->writeText($this->usager->getNom(), 142, 155.5, 'L');
