@@ -48,7 +48,7 @@ class Usager extends Personne
     {
         $usager = $data['usager'];
         $this->setSexe(isset($usager['sexe']) ? $usager['sexe'] : '');
-        $this->setNom(isset($usager['nom']) ? $usager['nom'] : '');
+        $this->setNom(isset($usager['nom']) ? $this->capitalizeFirstLetter($usager['nom']) : '');
         $this->setNomDUsage(isset($usager['nomDUsage']) ? $usager['nomDUsage'] : '');
         $this->setOrigineNomDUsage(isset($usager['origineNomDUsage']) ? $usager['origineNomDUsage'] : '');
         $motAvantNomDUsage = '';
@@ -57,7 +57,7 @@ class Usager extends Personne
         }
         $this->setMotAvantNomDUsage($motAvantNomDUsage);
 
-        $this->setPrenoms(isset($usager['prenoms']) ? $usager['prenoms'] : '');
+        $this->setPrenoms(isset($usager['prenoms']) ? $this->capitalizeFirstLetter($usager['prenoms']) : '');
         $this->setTaille(isset($usager['taille']) ? (int)$usager['taille'] : '');
         $this->setDateNaissance(isset($usager['dateNaissance']) ? $usager['dateNaissance'] : '');
         $this->setVilleNaissance(isset($usager['villeNaissance']) ? $usager['villeNaissance'] : '');
@@ -109,7 +109,7 @@ class Usager extends Personne
 
         if (isset($data['representant_legal'])) {
             if ($data['representant_legal'] == "parent1") {
-                $this->setIdentiteTuteur($this->getParent(1)->getNom() . ' ' . $this->getParent(1)->getPrenoms());
+                $this->setIdentiteTuteur($this->capitalizeFirstLetter($this->getParent(1)->getNom() . ' ' . $this->getParent(1)->getPrenoms()));
                 $this->setDateNaissanceTuteur($this->getParent(1)->getDateNaissance());
                 $this->setQualiteTuteur($this->getParent(1)->getSexe());
             } elseif ($data['representant_legal'] == "parent2") {
@@ -459,5 +459,20 @@ class Usager extends Personne
         $this->dateNaissanceTuteur = $dateNaissanceTuteur;
 
         return $this;
+    }
+
+    private function capitalizeFirstLetter($string)
+    {
+        // Capitalisation de chaque mot après séparation par espace
+        $words = preg_split('/\s/', $string);
+        $capitalizedWords = array_map('ucwords', $words);
+        $capitalizedString = implode(' ', $capitalizedWords);
+
+        // Capitalisation de chaque mot après séparation par tiret
+        $words = preg_split('/-/', $string);
+        $capitalizedWords = array_map('ucwords', $words);
+        $capitalizedString = implode('-', $capitalizedWords);
+
+        return $capitalizedString;
     }
 }
