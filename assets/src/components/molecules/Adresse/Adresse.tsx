@@ -1,7 +1,6 @@
 import React, { HTMLAttributes } from "react";
 import { Fieldset } from "../../atoms/Fieldset/Fieldset";
 import { Input } from "../../atoms/Input/Input";
-import styles from "./Adresse.module.css";
 import { useCerfaFormStore } from "../../../hooks/useCerfaFormStore";
 
 type AdresseProps = {

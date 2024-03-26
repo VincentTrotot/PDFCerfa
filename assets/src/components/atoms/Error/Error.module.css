@@ -1,0 +1,20 @@
+.error {
+    position: relative;
+    padding: 1rem;
+    background-color: #fff3f1;
+    border: 1px solid #ff4535;
+    border-radius: 0.3rem;
+}
+
+.errorClose {
+    color: #ff4535;
+    cursor: pointer;
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+
+    width: 1.5rem;
+    aspect-ratio: 1;
+
+    text-align: center;
+}

@@ -2,7 +2,6 @@ import React, { HTMLAttributes } from "react";
 import { Input } from "../../atoms/Input/Input";
 import { Fieldset } from "../../atoms/Fieldset/Fieldset";
 import { Sexe } from "../Sexe/Sexe";
-import styles from "./Parent.module.css";
 import { useCerfaFormStore } from "../../../hooks/useCerfaFormStore";
 
 type ParentProps = {

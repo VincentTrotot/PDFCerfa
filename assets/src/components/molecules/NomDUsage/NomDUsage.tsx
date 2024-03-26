@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Fieldset } from "../../atoms/Fieldset/Fieldset";
 import { Input } from "../../atoms/Input/Input";
 import { Radio } from "../../atoms/Radio/Radio";
-import styles from "./NomDUsage.module.css";
 import globals from "../../../styles/modules/globals.module.css";
 
 export function NomDUsage({ isMajeur }: { isMajeur: boolean }) {

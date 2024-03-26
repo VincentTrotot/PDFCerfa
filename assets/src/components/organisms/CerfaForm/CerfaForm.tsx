@@ -1,8 +1,5 @@
 import React from "react";
 
-import { useState } from "react";
-
-import { useDemande } from "../../../hooks/useDemande";
 import { useToggle } from "../../../hooks/useToggle";
 import { useTitle } from "../../../hooks/useTitle";
 
@@ -23,7 +20,7 @@ import styles from "./CerfaForm.module.css";
 import globals from "../../../styles/modules/globals.module.css";
 import { useCerfaFormStore } from "../../../hooks/useCerfaFormStore";
 import { Tuteur } from "../../molecules/Tuteur/Tuteur";
-import { Fieldset } from "../../atoms/Fieldset/Fieldset";
+import { Error } from "../../atoms/Error/Error";
 
 export function CerfaForm({}) {
     const { cni, passeport, isMajeur, sexe } = useCerfaFormStore();
@@ -35,7 +32,9 @@ export function CerfaForm({}) {
         data: pdf,
         handleSubmit,
         loading,
-        eraseData,
+        error,
+        resetData,
+        resetError,
     } = useFetch("/api/cerfa");
 
     const title = getTitle(cni, passeport);
@@ -79,7 +78,8 @@ export function CerfaForm({}) {
 
                 <Button disabled={loading}>Valider la demande</Button>
             </form>
-            <PDF pdf={pdf} erasePdf={eraseData} />
+            <PDF pdf={pdf} erasePdf={resetData} />
+            <Error error={error} resetError={resetError} />
         </div>
     );
 }

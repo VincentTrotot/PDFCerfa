@@ -23,3 +23,5 @@ Certains champs étant conditionnés à d'autres, j'ai voulu utiliser `React` po
 ## Évolutions
 
 Parmi les évolutions à apporter, la prochaine sera sans doute de créer un contoller pour la gestion d'une page afin de permettre aux utilisateurs qui souhaitent héberger cette application d'avoir une page _Mentions légales_.
+
+Bien sûr, il manque de la documentation pour chacun des composants `React` et des controlleurs `Symfony`, et il faudra configurer un prettier pour la partie TypeScript et un CodeSniffer pour la partie php.

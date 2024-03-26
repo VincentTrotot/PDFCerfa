@@ -1,8 +1,6 @@
-import React, { HTMLAttributes, useState } from "react";
-import { Checkbox } from "../../atoms/Checkbox/Checkbox";
+import React, { HTMLAttributes } from "react";
 import { Fieldset } from "../../atoms/Fieldset/Fieldset";
 import { Radio } from "../../atoms/Radio/Radio";
-import styles from "./Tuteur.module.css";
 import { useCerfaFormStore } from "../../../hooks/useCerfaFormStore";
 import globals from "../../../styles/modules/globals.module.css";
 import { useToggle } from "../../../hooks/useToggle";

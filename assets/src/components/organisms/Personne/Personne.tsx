@@ -1,12 +1,10 @@
-import React, { HTMLAttributes } from "react";
+import React from "react";
 import { departements } from "../../../inc/departements";
 import { Sexe } from "../../molecules/Sexe/Sexe";
 import { Input } from "../../atoms/Input/Input";
 import { NomDUsage } from "../../molecules/NomDUsage/NomDUsage";
 import { DatalistInput } from "../../atoms/DatalistInput/DatalistInput";
 import { SelectInput } from "../../atoms/SelectInput/SelectInput";
-import { Demande } from "../../../hooks/useDemande";
-import styles from "./Personne.module.css";
 import { useCerfaFormStore } from "../../../hooks/useCerfaFormStore";
 
 export function Personne() {

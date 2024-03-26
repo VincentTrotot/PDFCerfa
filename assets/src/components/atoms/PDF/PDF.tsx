@@ -2,7 +2,6 @@ import React from "react";
 import { clsx } from "clsx";
 
 import styles from "./PDF.module.css";
-import globals from "../../../styles/modules/globals.module.css";
 
 export function PDF({ pdf, erasePdf }: { pdf: string; erasePdf: () => void }) {
     if (pdf == "") return;

@@ -2,11 +2,19 @@ import { FormEvent, useState } from "react";
 import { dataToObject } from "../utils/dataToObject";
 import axios from "axios";
 
+export type Error = {
+    catched: boolean;
+    code?: string;
+} | null;
+
 export function useFetch(url: string) {
     const [data, setData] = useState("");
+    const [error, setError] = useState<Error>(null);
     const [loading, setLoading] = useState<boolean>(false);
 
-    const eraseData = () => setData("");
+    const resetData = () => setData("");
+
+    const resetError = () => setError(null);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         setLoading(true);
@@ -19,24 +27,36 @@ export function useFetch(url: string) {
         values.forEach((v, k) => {
             data[k] = v;
         });
-        try {
-            await axios
-                .post(url, dataToObject(data))
-                .then((res) => {
+
+        await axios
+            .post(url, dataToObject(data))
+            .then((res) => {
+                if (res.data == "") {
+                    setError({
+                        catched: false,
+                    });
+                } else {
                     setData(res.data);
-                })
-                .finally(() => {
-                    setLoading(false);
+                    setError(null);
+                }
+            })
+            .catch((e) => {
+                setError({
+                    catched: true,
+                    code: `E17-${e.response.data?.trace[0]?.line || "0"}`,
                 });
-        } catch (e) {
-            console.error(e.message);
-        }
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
     return {
         data: data,
         loading: loading,
         handleSubmit: handleSubmit,
-        eraseData: eraseData,
+        resetData: resetData,
+        resetError: resetError,
+        error: error,
     };
 }

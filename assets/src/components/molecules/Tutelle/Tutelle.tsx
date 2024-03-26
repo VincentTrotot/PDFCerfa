@@ -2,7 +2,6 @@ import React from "react";
 import { Fieldset } from "../../atoms/Fieldset/Fieldset";
 import { Radio, RadioProps } from "../../atoms/Radio/Radio";
 import { Checkbox } from "../../atoms/Checkbox/Checkbox";
-import styles from "./Tutelle.module.css";
 
 type TutelleProps = {} & RadioProps;
 
