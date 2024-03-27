@@ -160,29 +160,44 @@ function getAdressesLabel(isAdresse2: boolean): [string, string | null] {
     const { adresses } = useCerfaFormStore();
 
     let adresse1label = "Adresse 1";
-    let adresse1_ligne1_ligne2 = " (";
-    let adresse2_ligne1_ligne2 = " (";
+    let adresse1_ligne1_ligne2 = "";
+    let adresse2_ligne1_ligne2 = "";
     let adresse2label = null as string | null;
 
-    if (adresses[0].ligne1 !== "" || adresses[0].ligne2 !== "") {
-        if (adresses[0].ligne1 == "") {
-            adresse1_ligne1_ligne2 += adresses[0].ligne2;
-        } else if (adresses[0].ligne2 == "") {
-            adresse1_ligne1_ligne2 += adresses[0].ligne1;
-        } else {
-            adresse1_ligne1_ligne2 +=
-                adresses[0].ligne1 + " / " + adresses[0].ligne2;
+    if (
+        adresses[0].ligne1 !== "" ||
+        adresses[0].ligne2 !== "" ||
+        adresses[0].codePostal !== "" ||
+        adresses[0].ville !== ""
+    ) {
+        adresse1_ligne1_ligne2 = " (";
+        if (adresses[0].ligne1 !== "" || adresses[0].ligne2 !== "") {
+            if (adresses[0].ligne1 == "") {
+                adresse1_ligne1_ligne2 += adresses[0].ligne2;
+            } else if (adresses[0].ligne2 == "") {
+                adresse1_ligne1_ligne2 += adresses[0].ligne1;
+            } else {
+                adresse1_ligne1_ligne2 +=
+                    adresses[0].ligne1 + " / " + adresses[0].ligne2;
+            }
+            adresse1_ligne1_ligne2 += " – ";
         }
-        adresse1_ligne1_ligne2 += " – ";
+        adresse1label +=
+            adresse1_ligne1_ligne2 +
+            adresses[0].codePostal +
+            " " +
+            adresses[0].ville +
+            ")";
     }
-    adresse1label +=
-        adresse1_ligne1_ligne2 +
-        adresses[0].codePostal +
-        " " +
-        adresses[0].ville +
-        ")";
-    if (isAdresse2) {
+    if (
+        isAdresse2 &&
+        (adresses[1].ligne1 !== "" ||
+            adresses[1].ligne2 !== "" ||
+            adresses[1].codePostal !== "" ||
+            adresses[1].ville !== "")
+    ) {
         adresse2label = "Adresse 2";
+        adresse2_ligne1_ligne2 = " (";
         if (adresses[1].ligne1 !== "" || adresses[1].ligne2 !== "") {
             if (adresses[1].ligne1 == "") {
                 adresse2_ligne1_ligne2 += adresses[1].ligne2;
